@@ -7,7 +7,7 @@ import Calendar from '../Calendar';
 
 export const routes = {
     home: '/',
-    calendar: '/calendar'
+    agendamento: '/agendamento'
 
 }
 
@@ -18,7 +18,7 @@ function Router(props){
         <ConnectedRouter history={history}>
             <Switch>
                 <Route exact path={routes.home} component={Home}/>
-                <Route exact path={routes.calendar} component={Calendar}/>
+                <Route exact path={routes.agendamento} component={Calendar}/>
                 <Route path="*" component={() => "Página não encontrada"} />
             </Switch>
         </ConnectedRouter>

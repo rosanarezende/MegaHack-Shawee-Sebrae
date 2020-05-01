@@ -9,7 +9,8 @@ import '@fullcalendar/timegrid/main.css'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
-// import interactionPlugin from '@fullcalendar/interaction'
+import interactionPlugin from '@fullcalendar/interaction'
+import EventDialog from '../EventDialog'
 
 
 class EventCalendar extends React.Component {
@@ -18,32 +19,7 @@ class EventCalendar extends React.Component {
 
 	state = {
 		calendarWeekends: true,
-		calendarEvents: [ // initial event data
-			{ title: 'Event Now', start: new Date() }
-		]
-	}
-
-	handleDateClick = (arg) => {
-		const title = prompt('Título')
-		// const horario = prompt('horario')
-		console.log(arg)
-
-		// if (confirm('Would you like to add an event to ' + arg.dateStr + ' ?')) {
-		this.setState({  // add new event data
-			calendarEvents: this.state.calendarEvents.concat({ // creates a new array
-				title: title,
-				start: arg.date
-				//   allDay: arg.allDay
-			})
-		})
-		//   }  
-	}
-
-	render() {
-
-		const { events } = this.props
-
-		const eventViews = events.map(event => {
+		calendarEvents: this.props.events.map(event => {
 			return {
 				id: event.id,
 				title: event.title,
@@ -54,25 +30,40 @@ class EventCalendar extends React.Component {
 				// 		url: `/agenda/${event.slug}`
 			}
 		})
+	}
+
+	handleDateClick = (event) => {
+		const {setOpenDialog, setDate} = this.props
+
+		// enviar o event.date
+		setDate(event.dateStr)
+		
+		setOpenDialog(true)
+
+	}
+
+	render() {
+
+		const {setOpenDialog, dialogOpen, eventDate} = this.props
 
 		return (
 			<>
 				<FullCalendar
 					defaultView="dayGridMonth"
 					plugins={[dayGridPlugin, timeGridPlugin,
-						// interactionPlugin
+						interactionPlugin
 					]}
 					locale={ptbrLocale}
-					header={{
-						left: 'prev,next today',
-						center: 'title',
-						right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-					}}
-					events={eventViews}
 					ref={this.calendarComponentRef}
 					weekends={this.state.calendarWeekends}
-				// events={ this.state.calendarEvents }
-				// dateClick={ this.handleDateClick }
+					events={ this.state.calendarEvents }
+					dateClick={ this.handleDateClick }
+				/>
+
+				<EventDialog 
+				setOpenDialog={setOpenDialog}
+				dialogOpen={dialogOpen}
+				eventDate={eventDate}
 				/>
 			</>
 		)
