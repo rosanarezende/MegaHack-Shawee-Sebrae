@@ -44,7 +44,7 @@ class EventCalendar extends React.Component {
 
 	render() {
 
-		const {setOpenDialog, dialogOpen, eventDate} = this.props
+		const {setOpenDialog, dialogOpen, eventDate, addEvent} = this.props
 
 		return (
 			<>
@@ -64,6 +64,7 @@ class EventCalendar extends React.Component {
 				setOpenDialog={setOpenDialog}
 				dialogOpen={dialogOpen}
 				eventDate={eventDate}
+				addEvent={addEvent}
 				/>
 			</>
 		)

@@ -6,9 +6,15 @@ import Home from '../Home';
 import Calendar from '../Calendar';
 
 export const routes = {
-    home: '/',
-    agendamento: '/agendamento'
-
+    initial: '/', // página que some
+    login: '/login',
+    signUp: '/cadastro',
+    home: '/home', // estilo feed do profissional com seus trabalhos e tal
+    agendamento: '/agendamento',
+    produtos: '/produtos',
+    detalheDeProduto: '/detalhe',
+    carrinho: '/carrinho',
+    minhaConta: '/minha-conta'
 }
 
 function Router(props){

@@ -4,10 +4,10 @@ import { connect } from 'react-redux'
 
 import EventCalendar from '../../components/EventCalendar'
 
-import { setOpenDialog, setDate } from '../../actions/calendar'
+import { setOpenDialog, setDate, addEvent } from '../../actions/calendar'
 
 function Calendar(props){
-    const { events, setOpenDialog, dialogOpen, setDate, eventDate } = props
+    const { events, setOpenDialog, dialogOpen, setDate, eventDate, addEvent } = props
 
     return (
         <>
@@ -21,6 +21,7 @@ function Calendar(props){
                 dialogOpen={dialogOpen}
                 setDate={setDate}
                 eventDate={eventDate}
+                addEvent={addEvent}
             />
 
             <h1>Histórico de atendimentos</h1>
@@ -38,7 +39,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
     setOpenDialog: (option) => dispatch(setOpenDialog(option)), 
-    setDate: (date) => dispatch(setDate(date))
+    setDate: (date) => dispatch(setDate(date)),
+    addEvent: (event) => dispatch(addEvent(event))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Calendar)

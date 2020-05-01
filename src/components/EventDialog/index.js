@@ -19,7 +19,6 @@ class EventDialog extends React.Component {
 		this.state = {
 			serviceSelected: undefined,
 			localSelected: undefined,
-			dateSelected: undefined,
 			timeSelected: undefined,
 			observeSelected: undefined
 		}
@@ -32,11 +31,20 @@ class EventDialog extends React.Component {
 	handleClose = (event) => {
 		event.preventDefault()
 		// coloca a informação no calendário
-		// const { serviceSelected, localSelected, dateSelected, timeSelected, observeSelected} = this.state
-		console.log(this.state)
+		
+		const { addEvent, setOpenDialog, eventDate} = this.props
+		const { serviceSelected, localSelected, timeSelected, observeSelected} = this.state
+		const newEvent = {
+			serviceId: serviceSelected,
+			localId: localSelected,
+			start: timeSelected,
+			observe: observeSelected,
+			date: eventDate
+		}
+		console.log(newEvent)
 
 		// e fecha
-		this.props.setOpenDialog(false)
+		setOpenDialog(false)
 	}
 
 	serviceChange = () => {
@@ -199,7 +207,6 @@ class EventDialog extends React.Component {
 							value={this.state.observeSelected}
 							onChange={this.handleTextFieldChange}
 						/>
-
 
 					</DialogContent>
 
