@@ -169,9 +169,6 @@ class EventDialog extends React.Component {
 							value={this.state.localSelected || ''}
 							onChange={this.handleTextFieldChange}
 							SelectProps={{ native: true }}
-						// InputLabelProps={{
-						// 	shrink: true,
-						//   }}
 						>
 							<option value="" hidden></option>
 							{locations.map(local => (
