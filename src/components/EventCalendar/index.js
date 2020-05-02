@@ -31,6 +31,8 @@ class EventCalendar extends React.Component {
 			const startHour = start.toString().substr(16, 8)
 			const startFormated = `${start.getFullYear()}-${month}-${day}T${startHour}-03:00`
 
+			
+
 			const end = new Date(event.endTime)
 			let monthEnd
 			if(end.getMonth() + 1 < 10){ monthEnd = `0${end.getMonth() + 1}`} 
@@ -45,8 +47,8 @@ class EventCalendar extends React.Component {
 				id: event.id,
 				title: event.title,
 				description: event.description,
-				end: endFormated,
 				start: startFormated,
+				end: endFormated,
 				// 		extendedProps: event,
 				// 		url: `/agenda/${event.slug}`
 			}

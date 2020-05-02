@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dialog, DialogTitle, DialogContent, Button, TextField, MenuItem, Select, FormControl, InputLabel } from '@material-ui/core';
+import { Dialog, DialogTitle, DialogContent, Button, TextField, MenuItem, Select, FormControl, InputLabel, FormLabel, FormGroup, FormControlLabel, Checkbox } from '@material-ui/core';
 import { DivButton } from './styles'
 
 class EventDialog extends React.Component {
@@ -19,7 +19,7 @@ class EventDialog extends React.Component {
 		const { addEvent, setOpenDialog, eventDate } = this.props
 
 		const { serviceSelected, timeSelected, localSelected, observeSelected } = this.state
-		
+
 		const start = `${eventDate.dateStr}T${timeSelected}:00-03:00`
 		const startTimeStamp = Date.parse(start)
 		// console.log(startTimeStamp)
@@ -56,6 +56,33 @@ class EventDialog extends React.Component {
 		const stringIsoToday = today.toISOString()
 		const splitDateFromTime = stringIsoToday.split("T")
 		return splitDateFromTime[0]
+	}
+ 
+	atualizaCheckBox = nomeInput => event => {
+		let metodoPgcp = this.state.serviceSelected
+		Object.keys(metodoPgcp).forEach(elemento => {
+			if (elemento === event.target.name) {
+				metodoPgcp[elemento] = event.target.checked
+			}
+		})
+		this.setState({
+			serviceSelected: metodoPgcp
+		})
+
+		this.geraArrayPagamentos(nomeInput, event.target.checked)
+	}
+
+	geraArrayPagamentos = (stringPagamento, estadoChecked) => {
+		let arrayPagamentos = this.state.serviceSelected
+		if (estadoChecked === true) {
+			arrayPagamentos.push(stringPagamento)
+		}
+		else {
+			arrayPagamentos.splice(arrayPagamentos.indexOf(stringPagamento), 1)
+		}
+		this.setState({
+			serviceSelected: arrayPagamentos
+		})
 	}
 
 	render() {
@@ -132,13 +159,13 @@ class EventDialog extends React.Component {
 							value={this.state.localSelected || ''}
 							onChange={this.handleTextFieldChange}
 							SelectProps={{ native: true }}
-							// InputLabelProps={{
-							// 	shrink: true,
-							//   }}
+						// InputLabelProps={{
+						// 	shrink: true,
+						//   }}
 						>
 							<option value="" hidden></option>
 							{locations.map(local => (
-								<option value={local.name}>
+								<option value={local.id}>
 									{local.name} {local.value && ` (acréscimo de ${local.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })})`}
 								</option>
 							))}
@@ -147,9 +174,30 @@ class EventDialog extends React.Component {
 
 						{/* checkbox */}
 
-						<FormControl 
-							required 
-							fullWidth 
+						<FormControl required>
+							<FormLabel component="legend">Serviços</FormLabel>
+
+							<FormGroup>
+								{services.map(service => (
+									<FormControlLabel
+										control={
+											<Checkbox
+												name={service.name}
+												value={this.state.serviceSelected}
+												onChange={this.atualizaCheckbox}
+											/>
+										}
+										label={`${service.name} - ${service.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`}
+									/>
+								))}
+
+							</FormGroup>
+
+						</FormControl>
+
+						{/* <FormControl
+							required
+							fullWidth
 							margin="normal"
 							variant="outlined"
 						>
@@ -165,12 +213,12 @@ class EventDialog extends React.Component {
 							>
 								<MenuItem value="" hidden></MenuItem>
 								{services.map(service => (
-									<MenuItem value={service.name}>
+									<MenuItem value={service.id}>
 										{service.name} - {service.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
 									</MenuItem>
 								))}
 							</Select>
-						</FormControl>
+						</FormControl> */}
 
 						<TextField
 							margin='normal'
@@ -182,10 +230,10 @@ class EventDialog extends React.Component {
 							rows="3"
 							value={this.state.observeSelected}
 							onChange={this.handleTextFieldChange}
-							
+
 						/>
 
-									{/* Mostrar valor total */}
+						{/* Mostrar valor total */}
 
 
 					</DialogContent>
