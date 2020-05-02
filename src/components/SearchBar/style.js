@@ -26,4 +26,6 @@ export const Input = styled.input`
   box-sizing:border-box;
   border:none;
   background-color: transparent;
+  color: rgb(143, 10, 163);
+  font-style:italic;
 `

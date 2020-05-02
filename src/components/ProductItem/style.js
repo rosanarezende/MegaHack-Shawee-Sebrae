@@ -8,9 +8,6 @@ export const Wrapper = styled.div`
   margin: 0 15px 20px 15px;
   border-radius:5px;
   box-shadow: 0 2px 4px;
-  &:last-of-type{
-    margin-bottom:70px;
-  }
 `
 export const ImgSide = styled.img`
   width:35%;
@@ -40,7 +37,7 @@ export const Price = styled.div`
   height:50%;
   font-size: 1.5rem;
   font-weight:700;
-  color: #08f;
+  color: rgb(231,102,198);
   border-bottom-right-radius:5px;
   display:flex;
   align-items:center;
