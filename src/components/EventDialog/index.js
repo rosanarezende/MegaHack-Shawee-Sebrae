@@ -22,11 +22,11 @@ class EventDialog extends React.Component {
 		
 		const start = `${eventDate.dateStr}T${timeSelected}:00-03:00`
 		const startTimeStamp = Date.parse(start)
-		console.log(startTimeStamp)
+		// console.log(startTimeStamp)
 
 		const milisecondsService = serviceSelected.durationTime * 60000
 		const endTimeStamp = startTimeStamp + milisecondsService
-		console.log(endTimeStamp)
+		// console.log(endTimeStamp)
 
 		const eventFormated = {
 			id: new Date().getTime(),
@@ -37,9 +37,10 @@ class EventDialog extends React.Component {
 			localId: localSelected.id,
 			observation: observeSelected,
 		}
-		console.log(eventFormated)
-		// addEvent(eventFormated)
-		// setOpenDialog(false)
+		// console.log(eventFormated)
+
+		addEvent(eventFormated)
+		setOpenDialog(false)
 	}
 
 	handleTextFieldChange = (event) => {
@@ -102,7 +103,7 @@ class EventDialog extends React.Component {
 
 
 						<TextField
-							// required
+							required
 							margin='normal'
 							name="timeSelected"
 							variant='outlined'
@@ -120,38 +121,46 @@ class EventDialog extends React.Component {
 
 
 						<TextField
-							// required
+							required
 							select
 							name='localSelected'
 							margin='normal'
 							variant='outlined'
 							fullWidth
 							label="Local"
-							value={this.state.localSelected}
+							value={this.state.localSelected || ''}
 							onChange={this.handleTextFieldChange}
+							SelectProps={{
+								native: true,
+							  }}
 						>
+							<option value="" hidden></option>
 							{locations.map(local => (
-								<MenuItem value={local}>
+								<option value={local}>
 									{local.name} {local.value && ` (acréscimo de ${local.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })})`}
-								</MenuItem>
+								</option>
 							))}
 						</TextField>
 
 						<TextField
-							// required
+							required
 							select
 							name='serviceSelected'
 							margin='normal'
 							variant='outlined'
 							fullWidth
 							label="Serviços"
-							value={this.state.serviceSelected}
+							value={this.state.serviceSelected || ''}
 							onChange={this.handleTextFieldChange}
+							SelectProps={{
+								native: true,
+							  }}
 						>
+							<option value="" hidden></option>
 							{services.map(service => (
-								<MenuItem value={service}>
+								<option value={service}>
 									{service.name} - {service.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-								</MenuItem>
+								</option>
 							))}
 						</TextField>
 
@@ -165,6 +174,7 @@ class EventDialog extends React.Component {
 							rows="3"
 							value={this.state.observeSelected}
 							onChange={this.handleTextFieldChange}
+							
 						/>
 
 					</DialogContent>
