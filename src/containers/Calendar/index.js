@@ -8,7 +8,7 @@ import { setOpenDialog, setDate, addEvent } from '../../actions/calendar'
 
 function Calendar(props){
     const { events, setOpenDialog, dialogOpen, setDate, eventDate, addEvent } = props
-
+    console.log(props.local)
     return (
         <>
         <S.CalendarWrapper>
@@ -27,6 +27,7 @@ function Calendar(props){
             <h1>Histórico de atendimentos</h1>
 
         </S.CalendarWrapper>
+        
         </>
     )
 }
@@ -34,7 +35,8 @@ function Calendar(props){
 const mapStateToProps = (state) => ({
     events: state.calendar.events,
     dialogOpen: state.calendar.dialogOpen,
-    eventDate: state.calendar.eventDate
+    eventDate: state.calendar.eventDate,
+    local: state.navigation.actualPage
 })
 
 const mapDispatchToProps = dispatch => ({
