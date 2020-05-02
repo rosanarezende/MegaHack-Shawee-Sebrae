@@ -14,7 +14,7 @@ export const ImgSide = styled.img`
   height:100%;
   border-bottom-left-radius:5px;
   border-top-left-radius: 5px;
-  /* object-fit: cover; */
+  object-fit: cover;
 `
 export const InfoSide = styled.div`
   width: 65%;
