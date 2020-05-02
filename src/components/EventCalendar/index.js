@@ -33,18 +33,26 @@ class EventCalendar extends React.Component {
 	}
 
 	handleDateClick = (event) => {
-		const {setOpenDialog, setDate} = this.props
+		const { setOpenDialog, setDate } = this.props
 
 		// enviar o event.date
 		setDate(event.dateStr)
-		
+
 		setOpenDialog(true)
 
 	}
 
 	render() {
 
-		const {setOpenDialog, dialogOpen, eventDate, addEvent} = this.props
+		const { 
+			eventDate, 
+			services,
+			locations,
+
+			setOpenDialog, 
+			dialogOpen, 
+			addEvent 
+		} = this.props
 
 		return (
 			<>
@@ -56,15 +64,18 @@ class EventCalendar extends React.Component {
 					locale={ptbrLocale}
 					ref={this.calendarComponentRef}
 					weekends={this.state.calendarWeekends}
-					events={ this.state.calendarEvents }
-					dateClick={ this.handleDateClick }
+					events={this.state.calendarEvents}
+					dateClick={this.handleDateClick}
 				/>
 
-				<EventDialog 
-				setOpenDialog={setOpenDialog}
-				dialogOpen={dialogOpen}
-				eventDate={eventDate}
-				addEvent={addEvent}
+				<EventDialog
+					eventDate={eventDate}
+					services={services}
+					locations={locations}
+
+					setOpenDialog={setOpenDialog}
+					dialogOpen={dialogOpen}
+					addEvent={addEvent}
 				/>
 			</>
 		)

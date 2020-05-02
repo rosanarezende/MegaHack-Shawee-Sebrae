@@ -9,8 +9,6 @@ import {
 	TextField,
 	MenuItem
 } from '@material-ui/core';
-import * as S from './styles'
-
 
 class EventDialog extends React.Component {
 
@@ -31,9 +29,9 @@ class EventDialog extends React.Component {
 	handleClose = (event) => {
 		event.preventDefault()
 		// coloca a informação no calendário
-		
-		const { addEvent, setOpenDialog, eventDate} = this.props
-		const { serviceSelected, localSelected, timeSelected, observeSelected} = this.state
+
+		const { addEvent, setOpenDialog, eventDate } = this.props
+		const { serviceSelected, localSelected, timeSelected, observeSelected } = this.state
 		const newEvent = {
 			serviceId: serviceSelected,
 			localId: localSelected,
@@ -67,36 +65,42 @@ class EventDialog extends React.Component {
 	}
 
 	render() {
-		const { dialogOpen, eventDate } = this.props
+		const { 
+			eventDate,
+			services,
+			locations,
+
+			dialogOpen, 
+		} = this.props
 		console.log(eventDate)
 
-		const services = [
-			{
-				id: 1,
-				name: 'Corte de cabelo masculino',
-				value: 30,
-				durationTime: 20
-			},
-			{
-				id: 2,
-				name: 'Corte de cabelo feminino',
-				value: 50,
-				durationTime: 60
-			},
-		]
+		// const services = [
+		// 	{
+		// 		id: 1,
+		// 		name: 'Corte de cabelo masculino',
+		// 		value: 30,
+		// 		durationTime: 20
+		// 	},
+		// 	{
+		// 		id: 2,
+		// 		name: 'Corte de cabelo feminino',
+		// 		value: 50,
+		// 		durationTime: 60
+		// 	},
+		// ]
 
-		const locations = [
-			{
-				id: 1,
-				name: 'Salão do Fulano',
-				value: undefined
-			},
-			{
-				id: 2,
-				name: 'À domicílio',
-				value: 10
-			}
-		]
+		// const locations = [
+		// 	{
+		// 		id: 1,
+		// 		name: 'Salão do Fulano',
+		// 		value: undefined
+		// 	},
+		// 	{
+		// 		id: 2,
+		// 		name: 'À domicílio',
+		// 		value: 10
+		// 	}
+		// ]
 
 		return (
 			<Dialog
@@ -119,10 +123,10 @@ class EventDialog extends React.Component {
 
 				<form onSubmit={this.handleClose}>
 					<DialogContent>
-
-						<S.Subtitle>
+	
+					<Typography>
 							Bem vindo ao Salão Fulanão!!! Selecione as opções abaixo para agendar um serviço.
-					</S.Subtitle>
+					</Typography>
 
 						<TextField
 							disabled
@@ -143,7 +147,7 @@ class EventDialog extends React.Component {
 
 
 						<TextField
-							required
+							// required
 							margin='normal'
 							name="timeSelected"
 							variant='outlined'
@@ -161,7 +165,7 @@ class EventDialog extends React.Component {
 
 
 						<TextField
-							required
+							// required
 							select
 							name='localSelected'
 							margin='normal'
@@ -179,7 +183,7 @@ class EventDialog extends React.Component {
 						</TextField>
 
 						<TextField
-							required
+							// required
 							select
 							name='serviceSelected'
 							margin='normal'
