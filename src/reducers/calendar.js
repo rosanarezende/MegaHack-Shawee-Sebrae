@@ -3,8 +3,8 @@ const initialState = {
         {
             id: 1,
             title: 'Corte de cabelo Masculino',
-            startTime: 1588338000000,
-            endTime: 1588338540000,
+            startTime: 1588448549809,
+            endTime: 1588448549809,
             localId: 1,
             observation: undefined
         },

@@ -21,20 +21,26 @@ class EventCalendar extends React.Component {
 		calendarWeekends: true,
 		calendarEvents: this.props.events.map(event => {
 			const start = new Date(event.startTime)
+			
 			let month
-			if(start.getMonth() < 10){ month = `0${start.getMonth()}`} 
-			else { month = start.getMonth()}
+			if(start.getMonth() + 1 < 10){ month = `0${start.getMonth() + 1}`} 
+			else { month = start.getMonth() + 1}
 			let day
-			if(start.getDay() < 10){ day = `0${start.getDay()}`} 
-			else { day = start.getDay()}
+			if(start.getDate() < 10){ day = `0${start.getDate()}`} 
+			else { day = start.getDate()}
 			const startHour = start.toString().substr(16, 8)
 			const startFormated = `${start.getFullYear()}-${month}-${day}T${startHour}-03:00`
-			console.log(startFormated)
 
 			const end = new Date(event.endTime)
+			let monthEnd
+			if(end.getMonth() + 1 < 10){ monthEnd = `0${end.getMonth() + 1}`} 
+			else { monthEnd = end.getMonth() + 1}
+			let dayEnd
+			if(end.getDate() < 10){ dayEnd = `0${end.getDate()}`} 
+			else { dayEnd = end.getDate()}
 			const endHour = end.toString().substr(16, 8)
-			const endFormated = `${end.getFullYear()}-0${end.getMonth()}-0${end.getDay()}T${endHour}-03:00`
-			
+			const endFormated = `${end.getFullYear()}-${monthEnd}-${dayEnd}T${endHour}-03:00`
+
 			return {
 				id: event.id,
 				title: event.title,
