@@ -1,5 +1,7 @@
 import React from 'react'
-import { Dialog, DialogTitle, DialogContent, Button, TextField, MenuItem, Select, FormControl, InputLabel, FormLabel, FormGroup, FormControlLabel, Checkbox } from '@material-ui/core';
+import { Dialog, DialogTitle, DialogContent, Button, TextField,
+	// FormControl, InputLabel, FormLabel, FormGroup, FormControlLabel, Checkbox 
+} from '@material-ui/core';
 import { DivButton } from './styles'
 
 class EventDialog extends React.Component {
@@ -10,37 +12,47 @@ class EventDialog extends React.Component {
 			serviceSelected: undefined,
 			localSelected: undefined,
 			timeSelected: undefined,
-			observeSelected: undefined
+			observeSelected: undefined,
 		}
 	}
 
-	handleClose = (event) => {
+	handleClose = () => {
+		this.props.setOpenDialog(false)
+	}
+
+	handleSchedule = (event) => {
 		event.preventDefault()
 		const { addEvent, setOpenDialog, eventDate } = this.props
-
 		const { serviceSelected, timeSelected, localSelected, observeSelected } = this.state
-
 		const start = `${eventDate.dateStr}T${timeSelected}:00-03:00`
 		const startTimeStamp = Date.parse(start)
-		// console.log(startTimeStamp)
-
 		// const milisecondsService = serviceSelected.durationTime * 60000
 		// const endTimeStamp = startTimeStamp + milisecondsService
-		// // console.log(endTimeStamp)
 
 		const eventFormated = {
-			// id: new Date().getTime(),
-			title: serviceSelected,
-			// duration: serviceSelected.durationTime,
+			serviceId: serviceSelected,
 			startTime: startTimeStamp,
-			// endTime: endTimeStamp,
 			localId: localSelected,
 			observation: observeSelected,
-		}
-		console.log(eventFormated)
 
-		// addEvent(eventFormated)
-		// setOpenDialog(false)
+			// id: new Date().getTime(),
+			// title: serviceSelected,
+			// duration: serviceSelected.durationTime,
+			// endTime: endTimeStamp,
+		}
+		// console.log(eventFormated)
+
+		if(window.confirm('Os dados do agendamento estão corretos?')){
+			addEvent(eventFormated)
+			this.setState({
+				serviceSelected: undefined,
+				localSelected: undefined,
+				timeSelected: undefined,
+				observeSelected: undefined
+			})
+			setOpenDialog(false)
+		}		
+
 	}
 
 	handleTextFieldChange = (event) => {
@@ -110,7 +122,7 @@ class EventDialog extends React.Component {
 					Preencha os campos abaixo para agendar um serviço.
 				</DialogTitle>
 
-				<form onSubmit={this.handleClose}>
+				<form onSubmit={this.handleSchedule}>
 					<DialogContent>
 						<TextField
 							disabled
@@ -124,7 +136,7 @@ class EventDialog extends React.Component {
 							}}
 							type='date'
 							InputProps={{
-								min: this.getMinDate()
+								min: this.getMinDate() // funciona???
 							}}
 							value={eventDate && eventDate.dateStr}
 						/>
@@ -141,8 +153,6 @@ class EventDialog extends React.Component {
 								shrink: true,
 							}}
 							type='time'
-							// min
-							// max
 							value={this.state.timeSelected}
 							onChange={this.handleTextFieldChange}
 						/>
@@ -174,7 +184,7 @@ class EventDialog extends React.Component {
 
 						{/* checkbox */}
 
-						<FormControl required>
+						{/* <FormControl required margin="normal">
 							<FormLabel component="legend">Serviços</FormLabel>
 
 							<FormGroup>
@@ -193,7 +203,28 @@ class EventDialog extends React.Component {
 
 							</FormGroup>
 
-						</FormControl>
+						</FormControl> */}
+
+
+						<TextField
+							required
+							select
+							name='serviceSelected'
+							margin='normal'
+							variant='outlined'
+							fullWidth
+							label="Serviços"
+							value={this.state.serviceSelected || ''}
+							onChange={this.handleTextFieldChange}
+							SelectProps={{ native: true }}
+						>
+							<option value="" hidden></option>
+							{services.map(service => (
+								<option value={service.id}>
+									{service.name} - {service.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+								</option>
+							))}
+						</TextField>
 
 						{/* <FormControl
 							required
@@ -241,6 +272,10 @@ class EventDialog extends React.Component {
 					<DivButton>
 
 						{/* Se der tempo... pagamento */}
+
+						<Button variant='contained' color='inherit' onClick={this.handleClose}>
+							Cancelar
+						</Button>
 
 						<Button variant='contained' color='primary' type="submit">
 							Agendar
