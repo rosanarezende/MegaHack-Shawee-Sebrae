@@ -7,7 +7,17 @@ import EventCalendar from '../../components/EventCalendar'
 import { setOpenDialog, setDate, addEvent } from '../../actions/calendar'
 
 function Calendar(props){
-    const { events, setOpenDialog, dialogOpen, setDate, eventDate, addEvent } = props
+    const { 
+        events, 
+        dialogOpen, 
+        eventDate, 
+        services,
+        locations,
+
+        setOpenDialog, 
+        setDate, 
+        addEvent,
+    } = props
 
     return (
         <>
@@ -17,10 +27,13 @@ function Calendar(props){
 
             <EventCalendar 
                 events={events}
-                setOpenDialog={setOpenDialog}
                 dialogOpen={dialogOpen}
-                setDate={setDate}
                 eventDate={eventDate}
+                services={services}
+                locations={locations}
+                
+                setOpenDialog={setOpenDialog}
+                setDate={setDate}
                 addEvent={addEvent}
             />
 
@@ -34,7 +47,9 @@ function Calendar(props){
 const mapStateToProps = (state) => ({
     events: state.calendar.events,
     dialogOpen: state.calendar.dialogOpen,
-    eventDate: state.calendar.eventDate
+    eventDate: state.calendar.eventDate,
+    services: state.calendar.services,
+    locations: state.calendar.locations
 })
 
 const mapDispatchToProps = dispatch => ({

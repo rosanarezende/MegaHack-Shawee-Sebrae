@@ -1,6 +1,7 @@
 import styled from 'styled-components'
-import { Typography } from '@material-ui/core'
 
-export const Subtitle = styled(Typography)`
-    margin-bottom: 100px;
+export const DivButton = styled.div`
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
 `
