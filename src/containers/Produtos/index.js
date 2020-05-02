@@ -11,12 +11,17 @@ class Produtos extends React.Component {
   }
 
   render() {
+    const { services } = this.props
     console.log(this.props.local)
+
     return (
       <>
         <SearchBar />
-        <ProductItem />
-        <ProductItem />
+        
+        {services.map(service => (
+          <ProductItem service={service}/>
+        ))}
+
         <MyBottonNav />
       </>
     )
@@ -25,7 +30,8 @@ class Produtos extends React.Component {
 
 
 const mapStateToProps = (state) => ({
-  local: state.navigation.actualPage
+  local: state.navigation.actualPage,
+  services: state.professional.services,
 })
 const mapDispatchToProps = (dispatch) => ({
 

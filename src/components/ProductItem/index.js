@@ -2,13 +2,15 @@ import React from 'react'
 import { Wrapper, ImgSide, InfoSide, Title, Price } from './style'
 
 function ProductItem(props) {
+  const { service } = props
+
   return (
     <Wrapper>
-      <ImgSide src={'https://picsum.photos/200/200'} />
+      <ImgSide src={service.img} />
       <InfoSide>
-        <Title>Produto A qualquer ser quser venf onowef oifi owiuhnf uih0f owenhif wnfwu</Title>
+        <Title>{service.name}</Title>
         <Price>
-          R$ 1.500,00
+          {service.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
         </Price>
       </InfoSide>
     </Wrapper>
