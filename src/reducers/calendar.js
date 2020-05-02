@@ -3,24 +3,27 @@ const initialState = {
         {
             id: 1,
             title: 'Corte de cabelo Masculino',
-            startTime: '2020-05-01T16:38:49-03:00',
+            startTime: 1588338000000,
+            endTime: 1588338540000,
             localId: 1,
             observation: undefined
         },
         {
             id: 2,
             title: 'Corte de cabelo femino',
-            startTime: '2020-05-02T12:00:00-03:00',
+            startTime: 1588431600000,
+            endTime: 1588433400000,
             localId: 2,
             observation: "Corte da moda"
         },
-        {
-            id: 3,
-            title: 'Descoloração',
-            startTime: '2020-05-02T09:30:00-03:00',
-            localId: 1,
-            observation: "Cor vermelha"
-        },
+        // {
+        //     id: 3,
+        //     title: 'Descoloração',
+        //     startTime: '2020-05-02T09:30:00-03:00',
+        //     endTime: '',
+        //     localId: 1,
+        //     observation: "Cor vermelha"
+        // },
     ],
     dialogOpen: false,
     eventDate: undefined,    

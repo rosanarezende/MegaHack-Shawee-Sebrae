@@ -19,62 +19,21 @@ class EventDialog extends React.Component {
 		const { addEvent, setOpenDialog, eventDate } = this.props
 
 		const { serviceSelected, timeSelected, localSelected, observeSelected } = this.state
-		const selectedDateTimeStamp = Date.parse(eventDate.date)
-		console.log(selectedDateTimeStamp)
 		
-		// const start = `${eventDate}T${timeSelected}:00-03:00`
-		
-		
-		// let time
-		// if(serviceSelected.durationTime < 10){
-		// 	time = `00:0${serviceSelected.durationTime}`
-		// }
-		// else if(serviceSelected.durationTime < 60){
-		// 	time = `00:${serviceSelected.durationTime}`
-		// } else if(serviceSelected.durationTime < 120) {
-		// 	let minuts
-		// 	if(serviceSelected.durationTime === 60){
-		// 		minuts = '00'
-		// 	} 
-		// 	else if (serviceSelected.durationTime < 70){
-		// 		let cal = serviceSelected.durationTime - 60
-		// 		minuts = `0${cal}`
-		// 	} 
-		// 	else {
-		// 		minuts = serviceSelected.durationTime - 60
-		// 	}
-		// 	time = `01:${minuts}`
-		// } else if(serviceSelected.durationTime < 180) {
-		// 	let minuts
-		// 	if(serviceSelected.durationTime === 120){
-		// 		minuts = '00'
-		// 	} 
-		// 	else if (serviceSelected.durationTime < 130){
-		// 		let cal = serviceSelected.durationTime - 120
-		// 		minuts = `0${cal}`
-		// 	} 
-		// 	else {
-		// 		minuts = serviceSelected.durationTime - 120
-		// 	}
-		// 	// const minuts = serviceSelected.durationTime - 120
-		// 	time = `02:${minuts}`
-		// } // parei aqui pq é um MVP
-		// console.log(time)
+		const start = `${eventDate.dateStr}T${timeSelected}:00-03:00`
+		const startTimeStamp = Date.parse(start)
+		console.log(startTimeStamp)
 
-		 // somar timeSelected com time
-		// let d1 = Date.parse(time, "hh:mm");
-		// console.log(d1)
-		// let d2 = Date.parse(timeSelected, "hh:mm").add({hour: d1.getHours(), minute: d1.getMinutes()});
-		// const calc = d2.toString("hh:mm");
-		// console.log(calc)
-
-		// const end = `${eventDate}T${calc}:00-03:00`
+		const milisecondsService = serviceSelected.durationTime * 60000
+		const endTimeStamp = startTimeStamp + milisecondsService
+		console.log(endTimeStamp)
 
 		const eventFormated = {
 			id: new Date().getTime(),
 			title: serviceSelected.name,
 			duration: serviceSelected.durationTime,
-			// startTime: start,
+			startTime: startTimeStamp,
+			endTime: endTimeStamp,
 			localId: localSelected.id,
 			observation: observeSelected,
 		}

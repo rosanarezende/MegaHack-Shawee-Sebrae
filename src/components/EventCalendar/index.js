@@ -20,16 +20,27 @@ class EventCalendar extends React.Component {
 	state = {
 		calendarWeekends: true,
 		calendarEvents: this.props.events.map(event => {
+			const start = new Date(event.startTime)
+			let month
+			if(start.getMonth() < 10){ month = `0${start.getMonth()}`} 
+			else { month = start.getMonth()}
+			let day
+			if(start.getDay() < 10){ day = `0${start.getDay()}`} 
+			else { day = start.getDay()}
+			const startHour = start.toString().substr(16, 8)
+			const startFormated = `${start.getFullYear()}-${month}-${day}T${startHour}-03:00`
+			console.log(startFormated)
 
-			// aqui eu vou precisar trabalhar o timestamp pro formato certo
-
-
+			const end = new Date(event.endTime)
+			const endHour = end.toString().substr(16, 8)
+			const endFormated = `${end.getFullYear()}-0${end.getMonth()}-0${end.getDay()}T${endHour}-03:00`
+			
 			return {
 				id: event.id,
 				title: event.title,
 				description: event.description,
-				// end: event.endTime,
-				start: event.startTime,
+				end: endFormated,
+				start: startFormated,
 				// 		extendedProps: event,
 				// 		url: `/agenda/${event.slug}`
 			}
