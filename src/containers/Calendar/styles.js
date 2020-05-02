@@ -6,5 +6,5 @@ export const CalendarWrapper = styled.div`
 
 export const EventCalendarWrapper = styled.div`
     margin: 3rem auto;
-    max-width: 800px;
+    max-width: 1200px;
 `

@@ -43,14 +43,6 @@ function Calendar(props) {
                     />
                 </S.EventCalendarWrapper>
 
-                <Typography align='center' variant='h3' gutterBottom color="primary">
-                    Histórico de atendimentos
-                </Typography>
-
-                <Typography>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium laborum quae dicta iure consequatur! Quisquam, temporibus cumque! Ad, quia dolorum sunt officiis dignissimos minus est velit suscipit dolores explicabo illum.
-                </Typography>
-
             </S.CalendarWrapper>
 
             <MyBottonNav />
