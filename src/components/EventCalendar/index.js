@@ -20,12 +20,35 @@ class EventCalendar extends React.Component {
 	state = {
 		calendarWeekends: true,
 		calendarEvents: this.props.events.map(event => {
+			const start = new Date(event.startTime)
+			
+			let month
+			if(start.getMonth() + 1 < 10){ month = `0${start.getMonth() + 1}`} 
+			else { month = start.getMonth() + 1}
+			let day
+			if(start.getDate() < 10){ day = `0${start.getDate()}`} 
+			else { day = start.getDate()}
+			const startHour = start.toString().substr(16, 8)
+			const startFormated = `${start.getFullYear()}-${month}-${day}T${startHour}-03:00`
+
+			
+
+			const end = new Date(event.endTime)
+			let monthEnd
+			if(end.getMonth() + 1 < 10){ monthEnd = `0${end.getMonth() + 1}`} 
+			else { monthEnd = end.getMonth() + 1}
+			let dayEnd
+			if(end.getDate() < 10){ dayEnd = `0${end.getDate()}`} 
+			else { dayEnd = end.getDate()}
+			const endHour = end.toString().substr(16, 8)
+			const endFormated = `${end.getFullYear()}-${monthEnd}-${dayEnd}T${endHour}-03:00`
+
 			return {
 				id: event.id,
 				title: event.title,
 				description: event.description,
-				end: event.endTime,
-				start: event.startTime,
+				start: startFormated,
+				end: endFormated,
 				// 		extendedProps: event,
 				// 		url: `/agenda/${event.slug}`
 			}
@@ -34,9 +57,10 @@ class EventCalendar extends React.Component {
 
 	handleDateClick = (event) => {
 		const { setOpenDialog, setDate } = this.props
+		// console.log(event)
 
 		// enviar o event.date
-		setDate(event.dateStr)
+		setDate(event)
 
 		setOpenDialog(true)
 
