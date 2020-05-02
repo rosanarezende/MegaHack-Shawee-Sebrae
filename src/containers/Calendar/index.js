@@ -1,45 +1,59 @@
 import React from 'react'
-import * as S from './styles'
 import { connect } from 'react-redux'
 
 import EventCalendar from '../../components/EventCalendar'
+import MyBottonNav from '../../components/BottonNav'
 
 import { setOpenDialog, setDate, addEvent } from '../../actions/calendar'
 
-function Calendar(props){
-    const { 
-        events, 
-        dialogOpen, 
-        eventDate, 
+import { Typography } from '@material-ui/core'
+import * as S from './styles'
+
+function Calendar(props) {
+    const {
+        events,
+        dialogOpen,
+        eventDate,
         services,
         locations,
 
-        setOpenDialog, 
-        setDate, 
+        setOpenDialog,
+        setDate,
         addEvent,
     } = props
     return (
         <>
-        <S.CalendarWrapper>
-            
-            <h1>Agende um horário</h1>
+            <S.CalendarWrapper>
 
-            <EventCalendar 
-                events={events}
-                dialogOpen={dialogOpen}
-                eventDate={eventDate}
-                services={services}
-                locations={locations}
-                
-                setOpenDialog={setOpenDialog}
-                setDate={setDate}
-                addEvent={addEvent}
-            />
+                <Typography align='center' variant='h3' gutterBottom color="primary">
+                    Agende seu atendimento
+                </Typography>
 
-            <h1>Histórico de atendimentos</h1>
+                <S.EventCalendarWrapper>
+                    <EventCalendar
+                        events={events}
+                        dialogOpen={dialogOpen}
+                        eventDate={eventDate}
+                        services={services}
+                        locations={locations}
 
-        </S.CalendarWrapper>
-        
+                        setOpenDialog={setOpenDialog}
+                        setDate={setDate}
+                        addEvent={addEvent}
+                    />
+                </S.EventCalendarWrapper>
+
+                <Typography align='center' variant='h3' gutterBottom color="primary">
+                    Histórico de atendimentos
+                </Typography>
+
+                <Typography>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium laborum quae dicta iure consequatur! Quisquam, temporibus cumque! Ad, quia dolorum sunt officiis dignissimos minus est velit suscipit dolores explicabo illum.
+                </Typography>
+
+            </S.CalendarWrapper>
+
+            <MyBottonNav />
         </>
     )
 }
@@ -53,7 +67,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    setOpenDialog: (option) => dispatch(setOpenDialog(option)), 
+    setOpenDialog: (option) => dispatch(setOpenDialog(option)),
     setDate: (date) => dispatch(setDate(date)),
     addEvent: (event) => dispatch(addEvent(event))
 })

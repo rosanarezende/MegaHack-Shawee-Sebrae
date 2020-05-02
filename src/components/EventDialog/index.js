@@ -1,8 +1,5 @@
 import React from 'react'
-import {
-	Dialog, DialogTitle, DialogActions, DialogContent,
-	Button, Typography, TextField, MenuItem
-} from '@material-ui/core';
+import { Dialog, DialogTitle, DialogContent, Button, TextField, MenuItem } from '@material-ui/core';
 import { DivButton } from './styles'
 
 class EventDialog extends React.Component {
@@ -22,16 +19,64 @@ class EventDialog extends React.Component {
 		const { addEvent, setOpenDialog, eventDate } = this.props
 		const { serviceSelected, timeSelected, localSelected, observeSelected } = this.state
 		const start = `${eventDate}T${timeSelected}:00-03:00`
+		
+		
+		let time
+		if(serviceSelected.durationTime < 10){
+			time = `00:0${serviceSelected.durationTime}`
+		}
+		else if(serviceSelected.durationTime < 60){
+			time = `00:${serviceSelected.durationTime}`
+		} else if(serviceSelected.durationTime < 120) {
+			let minuts
+			if(serviceSelected.durationTime === 60){
+				minuts = '00'
+			} 
+			else if (serviceSelected.durationTime < 70){
+				let cal = serviceSelected.durationTime - 60
+				minuts = `0${cal}`
+			} 
+			else {
+				minuts = serviceSelected.durationTime - 60
+			}
+			time = `01:${minuts}`
+		} else if(serviceSelected.durationTime < 180) {
+			let minuts
+			if(serviceSelected.durationTime === 120){
+				minuts = '00'
+			} 
+			else if (serviceSelected.durationTime < 130){
+				let cal = serviceSelected.durationTime - 120
+				minuts = `0${cal}`
+			} 
+			else {
+				minuts = serviceSelected.durationTime - 120
+			}
+			// const minuts = serviceSelected.durationTime - 120
+			time = `02:${minuts}`
+		} // parei aqui pq é um MVP
+		console.log(time)
+
+		 // somar timeSelected com time
+		let d1 = Date.parse(time, "hh:mm");
+		console.log(d1)
+		// let d2 = Date.parse(timeSelected, "hh:mm").add({hour: d1.getHours(), minute: d1.getMinutes()});
+		// const calc = d2.toString("hh:mm");
+		// console.log(calc)
+
+		// const end = `${eventDate}T${calc}:00-03:00`
+
 		const eventFormated = {
 			id: new Date().getTime(),
-			title: serviceSelected,
+			title: serviceSelected.name,
+			duration: serviceSelected.durationTime,
 			startTime: start,
-			localId: localSelected,
+			localId: localSelected.id,
 			observation: observeSelected,
 		}
-		// console.log(eventFormated)
-		addEvent(eventFormated)
-		setOpenDialog(false)
+		console.log(eventFormated)
+		// addEvent(eventFormated)
+		// setOpenDialog(false)
 	}
 
 	handleTextFieldChange = (event) => {
@@ -123,7 +168,7 @@ class EventDialog extends React.Component {
 							onChange={this.handleTextFieldChange}
 						>
 							{locations.map(local => (
-								<MenuItem value={local.id}>
+								<MenuItem value={local}>
 									{local.name} {local.value && ` (acréscimo de ${local.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })})`}
 								</MenuItem>
 							))}
@@ -141,7 +186,7 @@ class EventDialog extends React.Component {
 							onChange={this.handleTextFieldChange}
 						>
 							{services.map(service => (
-								<MenuItem value={service.name}>
+								<MenuItem value={service}>
 									{service.name} - {service.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
 								</MenuItem>
 							))}

@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 
 export const CalendarWrapper = styled.div`
-    margin: 2rem;
-    text-align: center;
+    margin: 2rem 2rem 5rem;
+`
+
+export const EventCalendarWrapper = styled.div`
+    margin: 3rem auto;
+    max-width: 800px;
 `
