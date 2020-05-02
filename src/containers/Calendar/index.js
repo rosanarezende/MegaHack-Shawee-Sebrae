@@ -18,7 +18,6 @@ function Calendar(props){
         setDate, 
         addEvent,
     } = props
-
     return (
         <>
         <S.CalendarWrapper>
@@ -40,6 +39,7 @@ function Calendar(props){
             <h1>Histórico de atendimentos</h1>
 
         </S.CalendarWrapper>
+        
         </>
     )
 }
