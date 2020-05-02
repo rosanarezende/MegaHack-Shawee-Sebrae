@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import { push } from "connected-react-router";
 import { connect } from 'react-redux'
 import { routes } from '../../containers/Router';
@@ -8,6 +7,7 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import SvgIcon from '@material-ui/core/SvgIcon'
 import { setActualPage } from '../../actions/navigation';
+import { Wrapper } from './styles'
 
 
 
@@ -35,13 +35,6 @@ function ProfileLogo(props) {
     </SvgIcon>
   )
 }
-
-const Wrapper = styled.span`
-  position:fixed;
-  bottom:0px;
-  width:100%;
-  box-shadow: 0 0 5px;
-`
 
 class MyBottonNav extends React.Component {
   constructor(props) {
@@ -87,9 +80,9 @@ class MyBottonNav extends React.Component {
     return (
       <Wrapper>
         <BottomNavigation value={this.state.value} onChange={this.onNavChange}>
-          <BottomNavigationAction value="home" icon={<HomeLogo style={{ fontSize: 35}} />} />
-          <BottomNavigationAction value="cart" icon={<CartLogo style={{ fontSize: 35}} />} />
-          <BottomNavigationAction value="profile" icon={<ProfileLogo style={{ fontSize: 35}} />} />
+          <BottomNavigationAction value="home" icon={<HomeLogo style={{ fontSize: 35 }} />} />
+          <BottomNavigationAction value="cart" icon={<CartLogo style={{ fontSize: 35 }} />} />
+          <BottomNavigationAction value="profile" icon={<ProfileLogo style={{ fontSize: 35 }} />} />
         </BottomNavigation>
       </Wrapper>
     )
