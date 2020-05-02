@@ -48,8 +48,8 @@ const mapStateToProps = (state) => ({
     events: state.calendar.events,
     dialogOpen: state.calendar.dialogOpen,
     eventDate: state.calendar.eventDate,
-    services: state.calendar.services,
-    locations: state.calendar.locations
+    services: state.professional.services,
+    locations: state.professional.locations
 })
 
 const mapDispatchToProps = dispatch => ({
