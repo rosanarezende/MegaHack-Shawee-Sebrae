@@ -17,49 +17,53 @@ class EventDialog extends React.Component {
 	handleClose = (event) => {
 		event.preventDefault()
 		const { addEvent, setOpenDialog, eventDate } = this.props
+
 		const { serviceSelected, timeSelected, localSelected, observeSelected } = this.state
-		const start = `${eventDate}T${timeSelected}:00-03:00`
+		const selectedDateTimeStamp = Date.parse(eventDate.date)
+		console.log(selectedDateTimeStamp)
+		
+		// const start = `${eventDate}T${timeSelected}:00-03:00`
 		
 		
-		let time
-		if(serviceSelected.durationTime < 10){
-			time = `00:0${serviceSelected.durationTime}`
-		}
-		else if(serviceSelected.durationTime < 60){
-			time = `00:${serviceSelected.durationTime}`
-		} else if(serviceSelected.durationTime < 120) {
-			let minuts
-			if(serviceSelected.durationTime === 60){
-				minuts = '00'
-			} 
-			else if (serviceSelected.durationTime < 70){
-				let cal = serviceSelected.durationTime - 60
-				minuts = `0${cal}`
-			} 
-			else {
-				minuts = serviceSelected.durationTime - 60
-			}
-			time = `01:${minuts}`
-		} else if(serviceSelected.durationTime < 180) {
-			let minuts
-			if(serviceSelected.durationTime === 120){
-				minuts = '00'
-			} 
-			else if (serviceSelected.durationTime < 130){
-				let cal = serviceSelected.durationTime - 120
-				minuts = `0${cal}`
-			} 
-			else {
-				minuts = serviceSelected.durationTime - 120
-			}
-			// const minuts = serviceSelected.durationTime - 120
-			time = `02:${minuts}`
-		} // parei aqui pq é um MVP
-		console.log(time)
+		// let time
+		// if(serviceSelected.durationTime < 10){
+		// 	time = `00:0${serviceSelected.durationTime}`
+		// }
+		// else if(serviceSelected.durationTime < 60){
+		// 	time = `00:${serviceSelected.durationTime}`
+		// } else if(serviceSelected.durationTime < 120) {
+		// 	let minuts
+		// 	if(serviceSelected.durationTime === 60){
+		// 		minuts = '00'
+		// 	} 
+		// 	else if (serviceSelected.durationTime < 70){
+		// 		let cal = serviceSelected.durationTime - 60
+		// 		minuts = `0${cal}`
+		// 	} 
+		// 	else {
+		// 		minuts = serviceSelected.durationTime - 60
+		// 	}
+		// 	time = `01:${minuts}`
+		// } else if(serviceSelected.durationTime < 180) {
+		// 	let minuts
+		// 	if(serviceSelected.durationTime === 120){
+		// 		minuts = '00'
+		// 	} 
+		// 	else if (serviceSelected.durationTime < 130){
+		// 		let cal = serviceSelected.durationTime - 120
+		// 		minuts = `0${cal}`
+		// 	} 
+		// 	else {
+		// 		minuts = serviceSelected.durationTime - 120
+		// 	}
+		// 	// const minuts = serviceSelected.durationTime - 120
+		// 	time = `02:${minuts}`
+		// } // parei aqui pq é um MVP
+		// console.log(time)
 
 		 // somar timeSelected com time
-		let d1 = Date.parse(time, "hh:mm");
-		console.log(d1)
+		// let d1 = Date.parse(time, "hh:mm");
+		// console.log(d1)
 		// let d2 = Date.parse(timeSelected, "hh:mm").add({hour: d1.getHours(), minute: d1.getMinutes()});
 		// const calc = d2.toString("hh:mm");
 		// console.log(calc)
@@ -70,7 +74,7 @@ class EventDialog extends React.Component {
 			id: new Date().getTime(),
 			title: serviceSelected.name,
 			duration: serviceSelected.durationTime,
-			startTime: start,
+			// startTime: start,
 			localId: localSelected.id,
 			observation: observeSelected,
 		}
@@ -134,7 +138,7 @@ class EventDialog extends React.Component {
 							InputProps={{
 								min: this.getMinDate()
 							}}
-							value={eventDate}
+							value={eventDate && eventDate.dateStr}
 						/>
 
 

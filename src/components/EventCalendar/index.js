@@ -20,11 +20,15 @@ class EventCalendar extends React.Component {
 	state = {
 		calendarWeekends: true,
 		calendarEvents: this.props.events.map(event => {
+
+			// aqui eu vou precisar trabalhar o timestamp pro formato certo
+
+
 			return {
 				id: event.id,
 				title: event.title,
 				description: event.description,
-				end: event.endTime,
+				// end: event.endTime,
 				start: event.startTime,
 				// 		extendedProps: event,
 				// 		url: `/agenda/${event.slug}`
@@ -34,9 +38,10 @@ class EventCalendar extends React.Component {
 
 	handleDateClick = (event) => {
 		const { setOpenDialog, setDate } = this.props
+		// console.log(event)
 
 		// enviar o event.date
-		setDate(event.dateStr)
+		setDate(event)
 
 		setOpenDialog(true)
 
