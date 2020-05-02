@@ -20,7 +20,7 @@ class EventDialog extends React.Component {
 	handleClose = (event) => {
 		event.preventDefault()
 		const { addEvent, setOpenDialog, eventDate } = this.props
-		const { serviceSelected, timeSelected, localSelected, observeSelected } = this.state		
+		const { serviceSelected, timeSelected, localSelected, observeSelected } = this.state
 		const start = `${eventDate}T${timeSelected}:00-03:00`
 		const eventFormated = {
 			id: new Date().getTime(),
@@ -49,9 +49,9 @@ class EventDialog extends React.Component {
 	}
 
 	render() {
-		const { 
+		const {
 			eventDate, services, locations,
-			dialogOpen, 
+			dialogOpen,
 		} = this.props
 
 		return (
@@ -75,10 +75,6 @@ class EventDialog extends React.Component {
 
 				<form onSubmit={this.handleClose}>
 					<DialogContent>
-	
-					{/* <Typography>
-						Preencha os campos abaixo para agendar um serviço.
-					</Typography> */}
 
 						<TextField
 							disabled
@@ -167,15 +163,9 @@ class EventDialog extends React.Component {
 					</DialogContent>
 
 					<DivButton>
-
-						<Button
-							variant='contained'
-							color='primary'
-							type="submit"
-						>
+						<Button variant='contained' color='primary' type="submit">
 							Agendar
 						</Button>
-
 					</DivButton>
 
 				</form>
