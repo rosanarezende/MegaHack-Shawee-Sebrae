@@ -75,7 +75,6 @@ class EventDialog extends React.Component {
 
 				<form onSubmit={this.handleClose}>
 					<DialogContent>
-
 						<TextField
 							disabled
 							name="dateSelected"
