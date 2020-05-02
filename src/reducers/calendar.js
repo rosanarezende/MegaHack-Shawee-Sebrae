@@ -16,14 +16,14 @@ const initialState = {
             localId: 2,
             observation: "Corte da moda"
         },
-        // {
-        //     id: 3,
-        //     title: 'Descoloração',
-        //     startTime: '2020-05-02T09:30:00-03:00',
-        //     endTime: '',
-        //     localId: 1,
-        //     observation: "Cor vermelha"
-        // },
+        {
+            id: 3,
+            title: 'Descoloração',
+            startTime: 1588863600000,
+            endTime: 1588871400000,
+            localId: 1,
+            observation: "Cor vermelha"
+        },
     ],
     dialogOpen: false,
     eventDate: undefined,    
