@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
-  margin: 20px;
   height:30px;
+  width:100%;
   border: solid 1px #555;
   border-radius: 15px;
   box-sizing:border-box;

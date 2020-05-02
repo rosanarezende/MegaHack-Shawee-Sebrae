@@ -8,6 +8,9 @@ export const Wrapper = styled.div`
   margin: 0 15px 20px 15px;
   border-radius:5px;
   box-shadow: 0 2px 4px;
+  &:last-of-type{
+    margin-bottom:70px;
+  }
 `
 export const ImgSide = styled.img`
   width:35%;
