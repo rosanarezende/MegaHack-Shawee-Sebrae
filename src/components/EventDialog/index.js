@@ -1,14 +1,9 @@
 import React from 'react'
 import {
-	Dialog,
-	DialogTitle,
-	DialogActions,
-	DialogContent,
-	Button,
-	Typography,
-	TextField,
-	MenuItem
+	Dialog, DialogTitle, DialogActions, DialogContent,
+	Button, Typography, TextField, MenuItem
 } from '@material-ui/core';
+import { DivButton } from './styles'
 
 class EventDialog extends React.Component {
 
@@ -22,31 +17,21 @@ class EventDialog extends React.Component {
 		}
 	}
 
-	componentDidUpdate() {
-
-	}
-
 	handleClose = (event) => {
 		event.preventDefault()
-		// coloca a informação no calendário
-
 		const { addEvent, setOpenDialog, eventDate } = this.props
-		const { serviceSelected, localSelected, timeSelected, observeSelected } = this.state
-		const newEvent = {
-			serviceId: serviceSelected,
+		const { serviceSelected, timeSelected, localSelected, observeSelected } = this.state		
+		const start = `${eventDate}T${timeSelected}:00-03:00`
+		const eventFormated = {
+			id: new Date().getTime(),
+			title: serviceSelected,
+			startTime: start,
 			localId: localSelected,
-			start: timeSelected,
-			observe: observeSelected,
-			date: eventDate
+			observation: observeSelected,
 		}
-		console.log(newEvent)
-
-		// e fecha
+		// console.log(eventFormated)
+		addEvent(eventFormated)
 		setOpenDialog(false)
-	}
-
-	serviceChange = () => {
-
 	}
 
 	handleTextFieldChange = (event) => {
@@ -60,47 +45,14 @@ class EventDialog extends React.Component {
 		const today = new Date()
 		const stringIsoToday = today.toISOString()
 		const splitDateFromTime = stringIsoToday.split("T")
-		// console.log(splitDateFromTime[0])
 		return splitDateFromTime[0]
 	}
 
 	render() {
 		const { 
-			eventDate,
-			services,
-			locations,
-
+			eventDate, services, locations,
 			dialogOpen, 
 		} = this.props
-		console.log(eventDate)
-
-		// const services = [
-		// 	{
-		// 		id: 1,
-		// 		name: 'Corte de cabelo masculino',
-		// 		value: 30,
-		// 		durationTime: 20
-		// 	},
-		// 	{
-		// 		id: 2,
-		// 		name: 'Corte de cabelo feminino',
-		// 		value: 50,
-		// 		durationTime: 60
-		// 	},
-		// ]
-
-		// const locations = [
-		// 	{
-		// 		id: 1,
-		// 		name: 'Salão do Fulano',
-		// 		value: undefined
-		// 	},
-		// 	{
-		// 		id: 2,
-		// 		name: 'À domicílio',
-		// 		value: 10
-		// 	}
-		// ]
 
 		return (
 			<Dialog
@@ -118,15 +70,15 @@ class EventDialog extends React.Component {
 				id="dialog"
 			>
 				<DialogTitle>
-					Agende um serviço
+					Preencha os campos abaixo para agendar um serviço.
 				</DialogTitle>
 
 				<form onSubmit={this.handleClose}>
 					<DialogContent>
 	
-					<Typography>
-							Bem vindo ao Salão Fulanão!!! Selecione as opções abaixo para agendar um serviço.
-					</Typography>
+					{/* <Typography>
+						Preencha os campos abaixo para agendar um serviço.
+					</Typography> */}
 
 						<TextField
 							disabled
@@ -194,7 +146,7 @@ class EventDialog extends React.Component {
 							onChange={this.handleTextFieldChange}
 						>
 							{services.map(service => (
-								<MenuItem value={service.id}>
+								<MenuItem value={service.name}>
 									{service.name} - {service.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
 								</MenuItem>
 							))}
@@ -214,7 +166,7 @@ class EventDialog extends React.Component {
 
 					</DialogContent>
 
-					<DialogActions>
+					<DivButton>
 
 						<Button
 							variant='contained'
@@ -222,9 +174,9 @@ class EventDialog extends React.Component {
 							type="submit"
 						>
 							Agendar
-					</Button>
+						</Button>
 
-					</DialogActions>
+					</DivButton>
 
 				</form>
 
