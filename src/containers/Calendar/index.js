@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { useEffect} from 'react'
 import { connect } from 'react-redux'
+
 
 import EventCalendar from '../../components/EventCalendar'
 import MyBottonNav from '../../components/BottonNav'
 
 import { setOpenDialog, setDate, addEvent } from '../../actions/calendar'
+import { getEvents } from '../../actions/calendar'
 
 import { Typography } from '@material-ui/core'
 import * as S from './styles'
 
 function Calendar(props) {
+
     const {
         events,
         dialogOpen,
@@ -20,7 +23,13 @@ function Calendar(props) {
         setOpenDialog,
         setDate,
         addEvent,
+        getEvents
     } = props
+
+    useEffect(() => {
+        getEvents()
+    }, [getEvents])
+
     return (
         <>
             <S.CalendarWrapper>
@@ -61,7 +70,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
     setOpenDialog: (option) => dispatch(setOpenDialog(option)),
     setDate: (date) => dispatch(setDate(date)),
-    addEvent: (event) => dispatch(addEvent(event))
+    addEvent: (event) => dispatch(addEvent(event)),
+    getEvents: () => dispatch(getEvents())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Calendar)

@@ -16,10 +16,12 @@ import EventDialog from '../EventDialog'
 class EventCalendar extends React.Component {
 
 	calendarComponentRef = React.createRef()
+	
 
 	state = {
 		calendarWeekends: true,
 		calendarEvents: this.props.events.map(event => {
+			console.log(event)
 			const start = new Date(event.startTime)
 			
 			let month
@@ -43,7 +45,7 @@ class EventCalendar extends React.Component {
 
 			return {
 				id: event.id,
-				title: event.title,
+				title: event.service.name,
 				// description: event.description, // precisa?
 				start: startFormated,
 				end: endFormated,
@@ -66,6 +68,39 @@ class EventCalendar extends React.Component {
 
 	render() {
 
+		const eventsHere = this.props.events.map(event => {
+			console.log(event)
+			const start = new Date(Number(event.startTime))
+			
+			let month
+			if(start.getMonth() + 1 < 10){ month = `0${start.getMonth() + 1}`} 
+			else { month = start.getMonth() + 1}
+			let day
+			if(start.getDate() < 10){ day = `0${start.getDate()}`} 
+			else { day = start.getDate()}
+			const startHour = start.toString().substr(16, 8)
+			const startFormated = `${start.getFullYear()}-${month}-${day}T${startHour}-03:00`		
+
+			const end = new Date(Number(event.endTime))
+			let monthEnd
+			if(end.getMonth() + 1 < 10){ monthEnd = `0${end.getMonth() + 1}`} 
+			else { monthEnd = end.getMonth() + 1}
+			let dayEnd
+			if(end.getDate() < 10){ dayEnd = `0${end.getDate()}`} 
+			else { dayEnd = end.getDate()}
+			const endHour = end.toString().substr(16, 8)
+			const endFormated = `${end.getFullYear()}-${monthEnd}-${dayEnd}T${endHour}-03:00`
+
+			console.log(startFormated)
+
+			return {
+				id: event.id,
+				title: event.service.name,
+				start:  startFormated,
+				end: endFormated,
+			}
+		})
+
 		const { 
 			eventDate, 
 			services,
@@ -86,7 +121,7 @@ class EventCalendar extends React.Component {
 					locale={ptbrLocale}
 					ref={this.calendarComponentRef}
 					weekends={this.state.calendarWeekends}
-					events={this.state.calendarEvents}
+					events={eventsHere}
 					dateClick={this.handleDateClick}
 				/>
 
