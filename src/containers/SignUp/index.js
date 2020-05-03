@@ -2,33 +2,28 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
+// import LogoImg from "../../img/logo-futuretube.png";
 import Button from '@material-ui/core/Button';
-// import { login } from '../../actions/user';
 import { connect } from 'react-redux';
-import { push } from 'connected-react-router';
-import { routes } from '../Router/index';
+// import { push } from 'connected-react-router';
+// import { routes } from '../Router/index';
+import { goBack } from 'connected-react-router';
+import HeaderNav from '../../components/HeaderNav';
+import { signUp } from '../../actions/user';
 
 const Root = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background-color: #EFD6EF; */
 `
 
 export const StyledImg = styled.img`
   height: 200px;
   width: 200px;
-  margin-top: 64px;
-  margin-bottom: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   border-radius: 50%;
-`
-
-const Banner = styled.div`
-  display: flex;
-  justify-content: center;
-  border-radius: 50%;  
 `
 
 const FormContainer = styled.form`
@@ -37,31 +32,45 @@ const FormContainer = styled.form`
     flex-direction: column;
 `
 
-const TextContainer = styled.div`
-    margin: 20px;
-`
-
-function Login(props) {
+function SignUp(props) {
+    const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const handleSubmit = ev => {
+    const [photo, setPhoto] = useState("")
+
+    const handleSubmit = (ev) => {
         ev.preventDefault()
-        props.login(email, password)
+        props.signUp({ name, email, password, photo })
     }
 
     const { professionalData } = props
 
     return (
         <Root>
+            <HeaderNav
+                onClick={() => props.goBack()}
+                textHeader={"Cadastro"}
+            />
 
-            <Banner>
-                <StyledImg src={professionalData.businessImage} alt={professionalData.businessName} />
-            </Banner>
+            <StyledImg src={professionalData.businessImage} alt={professionalData.businessName} />
 
             <FormContainer
                 autoComplete="off"
                 onSubmit={handleSubmit}
             >
+
+                <TextField
+                    name="name"
+                    type="text"
+                    label="Nome"
+                    placeholder="Nome e sobrenome"
+                    value={name}
+                    onChange={(event) => setName(event.target.value)}
+                    margin="normal"
+                    variant="outlined"
+                    required
+                    pattern={props.pattern}
+                />
 
                 <TextField
                     name="email"
@@ -73,6 +82,7 @@ function Login(props) {
                     margin="normal"
                     variant="outlined"
                     required
+                    pattern={props.pattern}
                 />
 
                 <TextField
@@ -85,7 +95,19 @@ function Login(props) {
                     margin="normal"
                     variant="outlined"
                     required
-                    color="primary"
+                    pattern={props.pattern}
+                />
+
+                <TextField
+                    name="photo"
+                    type="text"
+                    label="Url da foto de perfil (opcional)"
+                    placeholder="Insira a url"
+                    value={photo}
+                    onChange={(event) => setPhoto(event.target.value)}
+                    margin="normal"
+                    variant="outlined"
+                    pattern={props.pattern}
                 />
 
                 <Button
@@ -94,17 +116,10 @@ function Login(props) {
                     variant="contained"
                     color="primary"
                 >
-                    Entrar
+                    Cadastrar
                 </Button>
 
             </FormContainer>
-
-            <TextContainer onClick={props.goToSignUp}>
-                <Typography>
-                    Não possui cadastro? Clique aqui.
-                </Typography>
-            </TextContainer>
-
         </Root>
     )
 }
@@ -115,8 +130,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    goToSignUp: () => dispatch(push(routes.signUp)),
-    // login: (email, password) => dispatch(login(email, password))
+    goBack: () => dispatch(goBack()),
+    signUp: (user) => dispatch(signUp(user))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
