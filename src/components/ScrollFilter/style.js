@@ -27,6 +27,6 @@ export const ListItem = styled.li`
   text-decoration: none;
   text-transform: uppercase;
   font-size: 14px;
-  color:${props => props.active ? 'rgb(101,9,145)' : 'rgb(0,0,0)'};
+  color:${props => props.active ? '#D12B63' : 'rgb(0,0,0)'};
   font-style:${props => props.active ? 'italic' : 'normal'};
 ` 

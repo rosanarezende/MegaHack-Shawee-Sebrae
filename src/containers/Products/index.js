@@ -7,6 +7,7 @@ import SearchBar from '../../components/SearchBar'
 import { PageWrapper, Header } from './style'
 import FilterScroll from '../../components/ScrollFilter'
 
+
 class Produtos extends React.Component {
   constructor(props) {
     super(props)
@@ -44,7 +45,7 @@ class Produtos extends React.Component {
 
   render() {
     const { products } = this.props
-
+    console.log(this.props.cartList)
     return (
       <PageWrapper>
         <Header>
@@ -60,14 +61,10 @@ class Produtos extends React.Component {
   }
 }
 
-
 const mapStateToProps = (state) => ({
-  local: state.navigation.actualPage,
-  products: state.professional.products,
-})
-const mapDispatchToProps = (dispatch) => ({
-
+  products: state.shopping.products,
+  cartList: state.shopping.cartList
 })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Produtos) 
+export default connect(mapStateToProps)(Produtos) 
