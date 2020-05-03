@@ -35,21 +35,21 @@ const initialState = {
     products: [
       {
           id: 1,
-          name: 'Creme',
+          name: 'Shampoo Herbal',
           value: 30,
-          img: 'https://static1.belezaextraordinaria.com.br/articles/6/24/02/6/@/241661-o-corte-curto-com-maquina-e-uma-boa-opca-article_news-3.jpg'
+          img: 'https://user-images.githubusercontent.com/45580434/80917398-00894280-8d35-11ea-9892-beedc8447fc2.jpg'
       },
       {
           id: 2,
           name: 'Esmalte',
-          value: 50,
-          img: 'https://static1.belezaextraordinaria.com.br/articles/1/23/87/1/@/241011-veja-os-nomes-dos-cortes-mais-famosos-e-article_news-4.jpg'
+          value: 22.5,
+          img: 'https://user-images.githubusercontent.com/45580434/80917325-6e813a00-8d34-11ea-9879-9bc0390698e1.jpg'
       },
       {
           id: 3,
           name: 'Maquiagem',
           value: 60,
-          img: 'https://correio-cdn1.cworks.cloud/fileadmin/_processed_/f/c/csm_shutterstock_249360427_d9678da4c4.jpg'
+          img: 'https://user-images.githubusercontent.com/45580434/80917442-4940fb80-8d35-11ea-9038-d2d926fd456a.jpg'
       },
   ],
     locations: [
