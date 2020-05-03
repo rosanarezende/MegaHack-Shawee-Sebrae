@@ -22,6 +22,27 @@ const initialState = {
             img: 'https://correio-cdn1.cworks.cloud/fileadmin/_processed_/f/c/csm_shutterstock_249360427_d9678da4c4.jpg'
         },
     ],
+
+    products: [
+      {
+          id: 1,
+          name: 'Creme',
+          value: 30,
+          img: 'https://static1.belezaextraordinaria.com.br/articles/6/24/02/6/@/241661-o-corte-curto-com-maquina-e-uma-boa-opca-article_news-3.jpg'
+      },
+      {
+          id: 2,
+          name: 'Esmalte',
+          value: 50,
+          img: 'https://static1.belezaextraordinaria.com.br/articles/1/23/87/1/@/241011-veja-os-nomes-dos-cortes-mais-famosos-e-article_news-4.jpg'
+      },
+      {
+          id: 3,
+          name: 'Maquiagem',
+          value: 60,
+          img: 'https://correio-cdn1.cworks.cloud/fileadmin/_processed_/f/c/csm_shutterstock_249360427_d9678da4c4.jpg'
+      },
+  ],
     locations: [
         {
             id: 1,
@@ -50,6 +71,11 @@ const professional = (state = initialState, action) => {
             return {
                 ...state,
                 locations: action.payload.locations
+            }
+        case 'SET_PRODUCT':
+            return {
+                ...state,
+                products: state.products.push(action.payload.product)
             }
 
         default:

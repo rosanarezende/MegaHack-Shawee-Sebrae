@@ -14,7 +14,7 @@ export const ImgSide = styled.img`
   height:100%;
   border-bottom-left-radius:5px;
   border-top-left-radius: 5px;
-  /* object-fit: cover; */
+  object-fit: cover;
 `
 export const InfoSide = styled.div`
   width: 65%;
@@ -37,7 +37,7 @@ export const Price = styled.div`
   height:50%;
   font-size: 1.5rem;
   font-weight:700;
-  color: #08f;
+  color: rgb(231,102,198);
   border-bottom-right-radius:5px;
   display:flex;
   align-items:center;

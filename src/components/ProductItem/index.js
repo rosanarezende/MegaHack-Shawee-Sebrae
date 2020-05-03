@@ -2,15 +2,15 @@ import React from 'react'
 import { Wrapper, ImgSide, InfoSide, Title, Price } from './style'
 
 function ProductItem(props) {
-  const { service } = props
+  const { product } = props
 
   return (
     <Wrapper>
-      <ImgSide src={service.img} />
+      <ImgSide src={product.img} />
       <InfoSide>
-        <Title>{service.name}</Title>
+        <Title>{product.name}</Title>
         <Price>
-          {service.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+          {product.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
         </Price>
       </InfoSide>
     </Wrapper>
