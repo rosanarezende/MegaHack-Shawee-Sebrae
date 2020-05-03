@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import MyBottonNav from '../../components/BottonNav'
 
-import { Typography } from '@material-ui/core'
+import { Typography, Card, CardHeader, Avatar, CardContent } from '@material-ui/core'
 import * as S from './styles'
 
 function Home(props) {
@@ -12,7 +12,7 @@ function Home(props) {
     <>
       <S.HomeWrapper>
 
-        <Typography align='center' variant='h3' gutterBottom color="primary">
+        <Typography align='center' variant='h3' gutterBottom>
           {professionalData.businessName}
         </Typography>
 
@@ -23,11 +23,27 @@ function Home(props) {
           />
         </S.DivImg>
 
-        <Typography align='center' gutterBottom>
+        <Typography align='center' gutterBottom variant="overline">
           {professionalData.businessAbout}
         </Typography>
 
-      Testando note
+      <S.CardProfessional>
+        <CardHeader
+          avatar={
+            <Avatar
+              src={professionalData.image}
+              alt={professionalData.name}
+            />
+          }
+          title={professionalData.name}
+        />
+        <CardContent>
+          <Typography align="justify" variant="caption">
+            {professionalData.about}
+          </Typography>
+        </CardContent>
+      
+      </S.CardProfessional>
       
       </S.HomeWrapper>
 
