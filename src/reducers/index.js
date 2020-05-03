@@ -5,6 +5,7 @@ import calendar from './calendar'
 import navigation from './navigation'
 import professional from './professional'
 import shopping from './shopping'
+import user from './user'
 
 export const generateReducers = history =>
   combineReducers({
@@ -13,4 +14,5 @@ export const generateReducers = history =>
     navigation,
     professional,
     shopping,
+    user,
   })
