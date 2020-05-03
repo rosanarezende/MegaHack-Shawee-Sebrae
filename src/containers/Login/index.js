@@ -5,26 +5,30 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 // import { login } from '../../actions/user';
 import { connect } from 'react-redux';
-import { push } from 'connected-react-router'
-import { routes } from '../Router/index'
+import { push } from 'connected-react-router';
+import { routes } from '../Router/index';
 
 const Root = styled.div`
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* background-color: #EFD6EF; */
+`
+
+export const StyledImg = styled.img`
+  height: 250px;
+  width: 250px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  border-radius: 50%;
 `
 
 const Banner = styled.div`
-  width: 40%;
   display: flex;
   justify-content: center;
-  margin-top: 78px;
-  margin-bottom: 30px;
-  img {
-      width: 100%
-  }
+  border-radius: 50%;  
 `
 
 const FormContainer = styled.form`
@@ -37,23 +41,6 @@ const TextContainer = styled.div`
     margin: 20px;
 `
 
-const styles = theme => ({
-    container: {
-        display: 'flex',
-        flexWrap: 'wrap',
-    },
-    textField: {
-        marginLeft: theme.spacing.unit,
-        marginRight: theme.spacing.unit,
-    },
-    dense: {
-        marginTop: 16,
-    },
-    menu: {
-        width: 200,
-    },
-});
-
 function Login(props) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -62,12 +49,13 @@ function Login(props) {
         props.login(email, password)
     }
 
+    const { professionalData } = props
+
     return (
         <Root>
-            Login
-{/* 
+
             <Banner>
-                <img src={LogoImg} />
+                <StyledImg src={professionalData.businessImage} alt={professionalData.businessName} />
             </Banner>
             <Typography variant="h6">
                 Entrar
@@ -100,6 +88,7 @@ function Login(props) {
                     margin="normal"
                     variant="outlined"
                     required
+                    color="primary"
                 />
 
                 <Button
@@ -117,7 +106,7 @@ function Login(props) {
                 <Typography>
                     Não possui cadastro? Clique aqui.
                 </Typography>
-            </TextContainer> */}
+            </TextContainer>
 
         </Root>
     )
