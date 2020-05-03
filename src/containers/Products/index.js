@@ -6,6 +6,7 @@ import SearchBar from '../../components/SearchBar'
 
 import { PageWrapper, Header } from './style'
 import FilterScroll from '../../components/ScrollFilter'
+import MyPageTitle from '../../components/PageTitle'
 
 
 class Produtos extends React.Component {
@@ -48,15 +49,18 @@ class Produtos extends React.Component {
     console.log(this.props.cartList)
     return (
       <PageWrapper>
+        <MyPageTitle pageTitle='Produtos' />
         <Header>
           <SearchBar />
         </Header>
         <FilterScroll selected={this.state.scrollValue} handleClick={this.handleScroll} />
-        {products.map((product, index) => (
-          <ProductItem key={index} product={product} />
-        ))}
+        {
+          products.map((product, index) => (
+            <ProductItem key={index} product={product} />
+          ))
+        }
         <MyBottonNav />
-      </PageWrapper>
+      </PageWrapper >
     )
   }
 }

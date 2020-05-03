@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import MyBottonNav from '../../components/BottonNav'
+import MyPageTitle from '../../components/PageTitle'
 import { PageWrapper, ImgSide, BodyWrapper, TypographyWrapper, ButtonWrapper } from './style'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
@@ -42,6 +43,7 @@ class ProductDetails extends React.Component {
     const { alreadyAdd } = this.state
     return (
       <PageWrapper>
+        <MyPageTitle showBack pageTitle='Produtos' />
         <ImgSide src={product.img} />
         <BodyWrapper>
           <TypographyWrapper>
