@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import LogoImg from "../../img/logo-joana-beauty.png";
 import Button from '@material-ui/core/Button';
 // import { login } from '../../actions/user';
 import { connect } from 'react-redux';
@@ -124,9 +123,14 @@ function Login(props) {
     )
 }
 
+const mapStateToProps = state => ({
+    // se precisar da logo, está dentro desse mock
+    professionalData: state.professional.professionalData
+})
+
 const mapDispatchToProps = dispatch => ({
     goToSignUp: () => dispatch(push(routes.signUp)),
     // login: (email, password) => dispatch(login(email, password))
 })
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
