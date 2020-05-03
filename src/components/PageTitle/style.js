@@ -6,7 +6,6 @@ export const Wrapper = styled.div`
   padding:10px 16px;
   display:flex;
   box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
-  margin-bottom:16px;
 `
 export const IconWrapper = styled.span`
   width:23px;

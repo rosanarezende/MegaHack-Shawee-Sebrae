@@ -1,9 +1,25 @@
-export const setProduct = (product) => ({
-  type: "SET_PRODUCT",
+import axios from 'axios'
+
+const baseURL = "https://wngygx9wlh.execute-api.us-east-1.amazonaws.com/v1"
+
+export const getProductsList = () => dispatch => {
+
+    axios
+        .get(`${baseURL}/products`)
+        .then(response => {
+            dispatch(setProductList(response.data.products))
+        })
+}
+
+
+
+export const setProductList = (productList) => ({
+  type: "SET_PRODUCT_LIST",
   payload: {
-    product
+    productList
   }
 })
+
 export const setProductToDetail = (product) => ({
   type: "SET_PRODUCT_TO_DETAIL",
   payload: {

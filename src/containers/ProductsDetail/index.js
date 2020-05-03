@@ -8,6 +8,8 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 
 import { addToCart } from '../../actions/shopping'
+import { push, goBack } from 'connected-react-router'
+import { routes } from '../Router'
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -31,11 +33,15 @@ class ProductDetails extends React.Component {
     }
   }
 
-  handleClickAddToCart = () => {
-    this.props.addToCart(this.props.product)
-    this.setState({
-      alreadyAdd: true
-    })
+  handleCart = () => {
+    if (this.state.alreadyAdd === false) {
+      this.props.addToCart(this.props.product)
+      this.setState({
+        alreadyAdd: true
+      })
+    } else {
+      this.props.goToCart()
+    }
   }
 
   render() {
@@ -58,19 +64,18 @@ class ProductDetails extends React.Component {
           <ButtonWrapper>
             <Button
               variant='contained'
-              color='secondary'
-              disabled={alreadyAdd}
-              onClick={this.handleClickAddToCart}
+              color={alreadyAdd ? 'primary' : 'secondary'}
+              onClick={this.handleCart}
             >
-              {alreadyAdd ? "ADICIONADO" : 'ADICIONAR AO CARRINHO'}
+              {alreadyAdd ? "IR PARA O CARRINHO" : 'ADICIONAR AO CARRINHO'}
             </Button>
           </ButtonWrapper>
           {this.state.alreadyAdd &&
             <ButtonWrapper>
               <Button
                 variant='contained'
-                color='primary'
-                onClick={this.handleClickAddToCart}
+                color='secondary'
+                onClick={() => this.props.goBack()}
               > CONTINUAR COMPRANDO
               </Button>
             </ButtonWrapper>
@@ -87,7 +92,9 @@ const mapStateToProps = (state) => ({
   cartList: state.shopping.cartList
 })
 const mapDispatchToProps = (dispatch) => ({
-  addToCart: (product) => dispatch(addToCart(product))
+  addToCart: (product) => dispatch(addToCart(product)),
+  goToCart: () => dispatch(push(routes.carrinho)),
+  goBack: () => dispatch(goBack())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails)

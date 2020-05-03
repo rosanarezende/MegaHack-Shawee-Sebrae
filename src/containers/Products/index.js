@@ -8,6 +8,8 @@ import { PageWrapper, Header } from './style'
 import FilterScroll from '../../components/ScrollFilter'
 import MyPageTitle from '../../components/PageTitle'
 
+import { getProductsList } from '../../actions/shopping'
+
 
 class Produtos extends React.Component {
   constructor(props) {
@@ -15,6 +17,10 @@ class Produtos extends React.Component {
     this.state = {
       scrollValue: ''
     }
+  }
+
+  componentDidMount() {
+    this.props.getProductList()
   }
 
   handleScroll = (newScrollValue) => {
@@ -70,5 +76,9 @@ const mapStateToProps = (state) => ({
   cartList: state.shopping.cartList
 })
 
+const mapDispatchToProps = (dispatch) => ({
+  getProductList: () => dispatch(getProductsList())
+})
 
-export default connect(mapStateToProps)(Produtos) 
+
+export default connect(mapStateToProps, mapDispatchToProps)(Produtos) 

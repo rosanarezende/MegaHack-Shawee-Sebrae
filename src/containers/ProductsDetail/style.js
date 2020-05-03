@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const PageWrapper = styled.div`
   min-height: 100vh;
   width:100%;
-  background-image: linear-gradient(#ffddff, #fff);
+  background-color: #fff;
   box-sizing:border-box;
   padding: 0px 0px 60px 0px;
 `
