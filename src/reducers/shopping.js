@@ -51,9 +51,11 @@ const shopping = (state = initialState, action) => {
 
   switch (action.type) {
     case 'SET_PRODUCT':
+      let newProductList = state.products
+      newProductList.push(action.payload.product)
       return {
         ...state,
-        products: state.products.push(action.payload.product)
+        products: newProductList
       }
     case 'SET_PRODUCT_TO_DETAIL':
       return {
@@ -61,9 +63,11 @@ const shopping = (state = initialState, action) => {
         productToDetail: action.payload.product
       }
       case 'ADD_TO_CART':
+        let newCartList = state.cartList
+        newCartList.push(action.payload.product)
         return{
           ...state,
-          cartList: state.cartList.push(action.payload.product)
+          cartList: newCartList
         }
     default:
       return state

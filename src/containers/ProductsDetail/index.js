@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import MyBottonNav from '../../components/BottonNav'
-import { PageWrapper, ImgSide, BodyWrapper } from './style'
+import { PageWrapper, ImgSide, BodyWrapper, TypographyWrapper, ButtonWrapper } from './style'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 
@@ -18,32 +18,62 @@ class ProductDetails extends React.Component {
 
   componentDidMount() {
     const { cartList, product } = this.props
-    if (cartList) {
-      cartList.forEach(cartProduct => {
-        cartProduct.id === product.id ?
-          this.setState({ alreadyAdd: true }) :
-          this.setState({ alreadyAdd: false })
+    console.log(cartList, product)
+    if (cartList.length > 0) {
+      console.log('entrei')
+      const produtoEncontrado = cartList.filter(cartProduct => {
+        return cartProduct.id === product.id
       })
+      if (produtoEncontrado.length > 0) {
+        this.setState({ alreadyAdd: true })
+      }
     }
-    this.setState({ alreadyAdd: false })
+  }
+
+  handleClickAddToCart = () => {
+    this.props.addToCart(this.props.product)
+    this.setState({
+      alreadyAdd: true
+    })
   }
 
   render() {
     const { product } = this.props
     const { alreadyAdd } = this.state
-    console.log(product)
     return (
       <PageWrapper>
         <ImgSide src={product.img} />
         <BodyWrapper>
-          <div>
+          <TypographyWrapper>
             <Typography color='primary' variant="h5">{product.name}</Typography>
-          </div>
-          <div>
+          </TypographyWrapper>
+          <TypographyWrapper>
+            <Typography variant="h6" align='justify'>{product.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</Typography>
+          </TypographyWrapper>
+          <TypographyWrapper>
             <Typography variant="body1" align='justify'>{product.description}</Typography>
-          </div>
+          </TypographyWrapper>
+          <ButtonWrapper>
+            <Button
+              variant='contained'
+              color='secondary'
+              disabled={alreadyAdd}
+              onClick={this.handleClickAddToCart}
+            >
+              {alreadyAdd ? "ADICIONADO" : 'ADICIONAR AO CARRINHO'}
+            </Button>
+          </ButtonWrapper>
+          {this.state.alreadyAdd &&
+            <ButtonWrapper>
+              <Button
+                variant='contained'
+                color='primary'
+                onClick={this.handleClickAddToCart}
+              > CONTINUAR COMPRANDO
+              </Button>
+            </ButtonWrapper>
+          }
         </BodyWrapper>
-        <Button variant='contained' color='secondary' disabled={alreadyAdd} >{alreadyAdd ? "bla" : 'ble'}</Button>
         <MyBottonNav />
       </PageWrapper>
     )
@@ -51,7 +81,8 @@ class ProductDetails extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  product: state.shopping.productToDetail
+  product: state.shopping.productToDetail,
+  cartList: state.shopping.cartList
 })
 const mapDispatchToProps = (dispatch) => ({
   addToCart: (product) => dispatch(addToCart(product))

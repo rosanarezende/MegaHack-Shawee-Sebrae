@@ -11,7 +11,7 @@ export const setProductToDetail = (product) => ({
   }
 })
 export const addToCart = (product) => ({
-  type: "SET_PRODUCT_TO_DETAIL",
+  type: 'ADD_TO_CART',
   payload: {
     product
   }

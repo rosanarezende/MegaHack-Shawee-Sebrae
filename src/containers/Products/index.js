@@ -45,7 +45,7 @@ class Produtos extends React.Component {
 
   render() {
     const { products } = this.props
-
+    console.log(this.props.cartList)
     return (
       <PageWrapper>
         <Header>
@@ -63,6 +63,7 @@ class Produtos extends React.Component {
 
 const mapStateToProps = (state) => ({
   products: state.shopping.products,
+  cartList: state.shopping.cartList
 })
 
 
