@@ -51,8 +51,7 @@ class EventDialog extends React.Component {
 				observeSelected: undefined
 			})
 			setOpenDialog(false)
-		}		
-
+		}
 	}
 
 	handleTextFieldChange = (event) => {
@@ -157,7 +156,6 @@ class EventDialog extends React.Component {
 							onChange={this.handleTextFieldChange}
 						/>
 
-
 						<TextField
 							required
 							select
@@ -223,31 +221,6 @@ class EventDialog extends React.Component {
 							))}
 						</TextField>
 
-						{/* <FormControl
-							required
-							fullWidth
-							margin="normal"
-							variant="outlined"
-						>
-							<InputLabel
-								id="servicos"
-							>Serviços</InputLabel>
-							<Select
-								required
-								labelId="servicos"
-								name='serviceSelected'
-								value={this.state.serviceSelected}
-								onChange={this.handleTextFieldChange}
-							>
-								<MenuItem value="" hidden></MenuItem>
-								{services.map(service => (
-									<MenuItem value={service.id}>
-										{service.name} - {service.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-									</MenuItem>
-								))}
-							</Select>
-						</FormControl> */}
-
 						<TextField
 							margin='normal'
 							name="observeSelected"
@@ -260,9 +233,6 @@ class EventDialog extends React.Component {
 							onChange={this.handleTextFieldChange}
 
 						/>
-
-						{/* Mostrar valor total */}
-
 
 					</DialogContent>
 
