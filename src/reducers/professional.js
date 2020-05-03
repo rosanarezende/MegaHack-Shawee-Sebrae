@@ -9,7 +9,7 @@ const initialState = {
   },
 
   services: [
-    {
+   /*  {
       id: 1,
       name: 'Corte de cabelo masculino',
       value: 30,
@@ -29,11 +29,11 @@ const initialState = {
       value: 60,
       durationTime: 121,
       img: 'https://correio-cdn1.cworks.cloud/fileadmin/_processed_/f/c/csm_shutterstock_249360427_d9678da4c4.jpg'
-    },
+    }, */
   ],
 
   locations: [
-    {
+    /* {
       id: 1,
       name: 'Salão do Fulanão',
       value: undefined
@@ -42,7 +42,7 @@ const initialState = {
       id: 2,
       name: 'À domicílio',
       value: 10
-    }
+    } */
   ]
 }
 
