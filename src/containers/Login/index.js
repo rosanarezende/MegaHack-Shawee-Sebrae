@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-// import { login } from '../../actions/user';
+import { login } from '../../actions/user';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 import { routes } from '../Router/index';
@@ -14,7 +14,6 @@ const Root = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background-color: #EFD6EF; */
 `
 
 export const StyledImg = styled.img`
@@ -46,7 +45,7 @@ function Login(props) {
     const [password, setPassword] = useState("")
     const handleSubmit = ev => {
         ev.preventDefault()
-        props.login(email, password)
+        props.login({email, password})
     }
 
     const { professionalData } = props
@@ -116,7 +115,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     goToSignUp: () => dispatch(push(routes.signUp)),
-    // login: (email, password) => dispatch(login(email, password))
+    login: (user) => dispatch(login(user))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
