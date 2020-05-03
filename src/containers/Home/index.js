@@ -3,22 +3,29 @@ import { connect } from 'react-redux'
 
 import MyBottonNav from '../../components/BottonNav'
 
-import { Typography, CardMedia } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
+import * as S from './styles'
 
 function Home(props) {
   const { professionalData } = props
   return (
     <>
-      <Typography align='center' variant='h3' gutterBottom color="primary">
+      <S.HomeWrapper>
+
+        <Typography align='center' variant='h3' gutterBottom color="primary">
           {professionalData.businessName}
-      </Typography>
+        </Typography>
 
-      <CardMedia
-        image={professionalData.businessImage}
-        title={professionalData.businessName}
-      />
+        <S.DivImg>
+          <S.Logo
+            src={professionalData.businessImage}
+            alt={professionalData.businessName}
+          />
+        </S.DivImg>
 
 
+
+      </S.HomeWrapper>
 
       <MyBottonNav />
     </>
