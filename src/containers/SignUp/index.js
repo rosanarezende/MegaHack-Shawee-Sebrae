@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-// import LogoImg from "../../img/logo-futuretube.png";
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 // import { push } from 'connected-react-router';
@@ -36,11 +35,11 @@ function SignUp(props) {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [photo, setPhoto] = useState("")
+    const [adress, setAdress] = useState("")
 
     const handleSubmit = (ev) => {
         ev.preventDefault()
-        props.signUp({ name, email, password })
+        props.signUp({ name, email, password, adress })
     }
 
     const { professionalData } = props
@@ -98,6 +97,19 @@ function SignUp(props) {
                     pattern={props.pattern}
                 />
 
+                <TextField
+                    name="adress"
+                    type="adress"
+                    label="Endereço"
+                    placeholder="Endereço completo"
+                    value={password}
+                    onChange={(event) => setAdress(event.target.value)}
+                    margin="normal"
+                    variant="outlined"
+                    required
+                    pattern={props.pattern}
+                />
+
                 <Button
                     type="submit"
                     fullWidth
@@ -113,7 +125,6 @@ function SignUp(props) {
 }
 
 const mapStateToProps = state => ({
-    // se precisar da logo, está dentro desse mock
     professionalData: state.professional.professionalData
 })
 
