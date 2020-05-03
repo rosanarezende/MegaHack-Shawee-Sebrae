@@ -3,7 +3,6 @@ import { NavWrapper, ListWrapper, ListItem } from './style'
 
 
 export default function FilterScroll(props) {
-  console.log(props.selected)
   return (
     <NavWrapper>
       <ListWrapper>

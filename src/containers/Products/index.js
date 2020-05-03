@@ -7,6 +7,7 @@ import SearchBar from '../../components/SearchBar'
 import { PageWrapper, Header } from './style'
 import FilterScroll from '../../components/ScrollFilter'
 
+
 class Produtos extends React.Component {
   constructor(props) {
     super(props)
@@ -60,14 +61,9 @@ class Produtos extends React.Component {
   }
 }
 
-
 const mapStateToProps = (state) => ({
-  local: state.navigation.actualPage,
   products: state.professional.products,
 })
-const mapDispatchToProps = (dispatch) => ({
-
-})
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Produtos) 
+export default connect(mapStateToProps)(Produtos) 

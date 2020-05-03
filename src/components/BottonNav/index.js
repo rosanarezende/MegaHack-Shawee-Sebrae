@@ -89,8 +89,6 @@ class MyBottonNav extends React.Component {
   }
 
   render() {
-    console.log(this.props.local)
-    console.log(this.state.value)
     return (
       <Wrapper>
         <BottomNavigation value={this.state.value} onChange={this.onNavChange}>

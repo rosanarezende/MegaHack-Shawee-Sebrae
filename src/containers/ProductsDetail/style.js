@@ -6,6 +6,7 @@ export const PageWrapper = styled.div`
   background-color: #fff5ff;
   box-sizing:border-box;
   padding-bottom: 60px;
+  
 `
 export const Header = styled.header`
   height:100px;

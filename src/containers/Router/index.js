@@ -4,7 +4,8 @@ import { Switch, Route } from 'react-router-dom'
 
 import Home from '../Home';
 import Calendar from '../Calendar';
-import Produtos from '../Produtos';
+import Produtos from '../Products';
+import ProductDetails from '../ProductsDetail'
 import InitialScreen from '../InitialScreen';
 import Login from '../Login';
 import MyAccount from '../MyAccount';
@@ -32,6 +33,7 @@ function Router(props) {
         <Route exact path={routes.home} component={Home} />
         <Route exact path={routes.agendamento} component={Calendar} />
         <Route exact path={routes.produtos} component={Produtos} />
+        <Route exact path={routes.detalheDeProduto} component={ProductDetails} />
         <Route exact path={routes.minhaConta} component={MyAccount}/>
         <Route path="*" component={() => "Página não encontrada"} />
       </Switch>

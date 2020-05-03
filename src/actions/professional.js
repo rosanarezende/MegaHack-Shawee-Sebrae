@@ -25,3 +25,9 @@ export const setProduct = (product) => ({
       product
     }
 })
+export const setProductToDetail = (productDetail) => ({
+    type: "SET_PRODUCT_TO_DETAIL",
+    payload: {
+      productDetail
+    }
+})
