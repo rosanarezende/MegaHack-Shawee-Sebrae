@@ -40,7 +40,7 @@ function SignUp(props) {
 
     const handleSubmit = (ev) => {
         ev.preventDefault()
-        props.signUp({ name, email, password, photo })
+        props.signUp({ name, email, password })
     }
 
     const { professionalData } = props
@@ -95,18 +95,6 @@ function SignUp(props) {
                     margin="normal"
                     variant="outlined"
                     required
-                    pattern={props.pattern}
-                />
-
-                <TextField
-                    name="photo"
-                    type="text"
-                    label="Url da foto de perfil (opcional)"
-                    placeholder="Insira a url"
-                    value={photo}
-                    onChange={(event) => setPhoto(event.target.value)}
-                    margin="normal"
-                    variant="outlined"
                     pattern={props.pattern}
                 />
 
