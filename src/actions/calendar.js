@@ -1,9 +1,22 @@
+import axios from 'axios'
+
+const baseURL = "https://wngygx9wlh.execute-api.us-east-1.amazonaws.com/v1"
+
 export const setEvents = (events) => ({
     type: "SET_EVENTS",
     payload: {
         events
     }
 })
+
+export const getEvents = () => dispatch => {
+    axios
+        .get(`${baseURL}/events`)
+        .then(response => {
+            dispatch(setEvents(response.data.events))
+        })
+}
+
 
 export const setOpenDialog = (option) => ({
     type: "SET_OPEN_DIALOG",
@@ -19,9 +32,11 @@ export const setDate = (date) => ({
     }
 })
 
-export const addEvent = (event) => ({
-    type: "ADD_EVENT",
-    payload: {
-        event
-    }
-})
+
+export const addEvent = (event) => dispatch => {
+    axios
+        .post(`${baseURL}/events/scheduling`, event)
+        .then(response => {
+            dispatch(getEvents())
+        })
+}

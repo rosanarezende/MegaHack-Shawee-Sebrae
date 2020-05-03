@@ -1,26 +1,36 @@
-import React from 'react'
+import React, { useEffect} from 'react'
 import { connect } from 'react-redux'
+
 
 import EventCalendar from '../../components/EventCalendar'
 import MyBottonNav from '../../components/BottonNav'
 
 import { setOpenDialog, setDate, addEvent } from '../../actions/calendar'
+import { getEvents } from '../../actions/calendar'
 
 import { Typography } from '@material-ui/core'
 import * as S from './styles'
 
 function Calendar(props) {
+
     const {
         events,
         dialogOpen,
         eventDate,
         services,
         locations,
+        user,
 
         setOpenDialog,
         setDate,
         addEvent,
+        getEvents
     } = props
+
+    useEffect(() => {
+        getEvents()
+    }, [getEvents])
+
     return (
         <>
             <S.CalendarWrapper>
@@ -36,6 +46,7 @@ function Calendar(props) {
                         eventDate={eventDate}
                         services={services}
                         locations={locations}
+                        user={user}
 
                         setOpenDialog={setOpenDialog}
                         setDate={setDate}
@@ -55,13 +66,15 @@ const mapStateToProps = (state) => ({
     dialogOpen: state.calendar.dialogOpen,
     eventDate: state.calendar.eventDate,
     services: state.professional.services,
-    locations: state.professional.locations
+    locations: state.professional.locations,
+    user: state.user.user
 })
 
 const mapDispatchToProps = dispatch => ({
     setOpenDialog: (option) => dispatch(setOpenDialog(option)),
     setDate: (date) => dispatch(setDate(date)),
-    addEvent: (event) => dispatch(addEvent(event))
+    addEvent: (event) => dispatch(addEvent(event)),
+    getEvents: () => dispatch(getEvents())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Calendar)

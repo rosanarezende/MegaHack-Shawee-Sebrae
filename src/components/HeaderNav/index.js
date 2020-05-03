@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import BackArrow from '../../img//back.png';
 import Typography from '@material-ui/core/Typography';
@@ -22,7 +22,7 @@ export default function HeaderNav(props) {
 
   return (
     <StyledDiv>
-      <img onClick={props.onClick} src={BackArrow} style={{ display: props.display }}></img>
+      <img onClick={props.onClick} src={BackArrow} style={{ display: props.display }} alt="logo"/>
       <Typography type="h6">
         {props.textHeader}
       </Typography>

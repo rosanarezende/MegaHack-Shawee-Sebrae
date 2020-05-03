@@ -14,13 +14,22 @@ import EventDialog from '../EventDialog'
 
 
 class EventCalendar extends React.Component {
-
 	calendarComponentRef = React.createRef()
-
+	
 	state = {
 		calendarWeekends: true,
-		calendarEvents: this.props.events.map(event => {
-			const start = new Date(event.startTime)
+	}
+
+	handleDateClick = (event) => {
+		const { setOpenDialog, setDate } = this.props
+		setDate(event)
+		setOpenDialog(true)
+	}
+
+	render() {
+
+		const eventsHere = this.props.events.map(event => {
+			const start = new Date(Number(event.startTime))
 			
 			let month
 			if(start.getMonth() + 1 < 10){ month = `0${start.getMonth() + 1}`} 
@@ -31,7 +40,7 @@ class EventCalendar extends React.Component {
 			const startHour = start.toString().substr(16, 8)
 			const startFormated = `${start.getFullYear()}-${month}-${day}T${startHour}-03:00`		
 
-			const end = new Date(event.endTime)
+			const end = new Date(Number(event.endTime))
 			let monthEnd
 			if(end.getMonth() + 1 < 10){ monthEnd = `0${end.getMonth() + 1}`} 
 			else { monthEnd = end.getMonth() + 1}
@@ -43,33 +52,17 @@ class EventCalendar extends React.Component {
 
 			return {
 				id: event.id,
-				title: event.title,
-				// description: event.description, // precisa?
-				start: startFormated,
+				title: event.service && event.service.name,
+				start:  startFormated,
 				end: endFormated,
-				// 		extendedProps: event,
-				// 		url: `/agenda/${event.slug}`
 			}
 		})
-	}
-
-	handleDateClick = (event) => {
-		const { setOpenDialog, setDate } = this.props
-		// console.log(event)
-
-		// enviar o event.date
-		setDate(event)
-
-		setOpenDialog(true)
-
-	}
-
-	render() {
 
 		const { 
 			eventDate, 
 			services,
 			locations,
+			user,
 
 			setOpenDialog, 
 			dialogOpen, 
@@ -86,7 +79,7 @@ class EventCalendar extends React.Component {
 					locale={ptbrLocale}
 					ref={this.calendarComponentRef}
 					weekends={this.state.calendarWeekends}
-					events={this.state.calendarEvents}
+					events={eventsHere}
 					dateClick={this.handleDateClick}
 				/>
 
@@ -94,6 +87,7 @@ class EventCalendar extends React.Component {
 					eventDate={eventDate}
 					services={services}
 					locations={locations}
+					user={user}
 
 					setOpenDialog={setOpenDialog}
 					dialogOpen={dialogOpen}
