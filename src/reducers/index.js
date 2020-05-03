@@ -4,6 +4,7 @@ import { connectRouter } from 'connected-react-router'
 import calendar from './calendar'
 import navigation from './navigation'
 import professional from './professional'
+import user from './user'
 
 export const generateReducers = history =>
   combineReducers({
@@ -11,5 +12,5 @@ export const generateReducers = history =>
     calendar,
     navigation,
     professional,
-    
+    user,
   })

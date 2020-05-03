@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import * as S from './styles'
-import { Typography } from '@material-ui/core'
+import { Typography, Card, CardContent } from '@material-ui/core'
 
 import MyBottonNav from '../../components/BottonNav'
 import CardPurchaseHistoric from '../../components/CardPurchasesHistoric'
@@ -28,6 +28,9 @@ function MyAccount() {
 		}
 	]
 
+	const productsTotal = products.reduce((prevVal, product) => { return prevVal + product.value }, 0)
+
+
 	const services = [
 		{
 			id: 1,
@@ -52,6 +55,10 @@ function MyAccount() {
 		}
 	]
 
+	const servicesTotal = services.reduce((prevVal, service) => { return prevVal + service.value }, 0)
+
+	const total = servicesTotal + productsTotal
+
 	return (
 		<>
 			<S.MyAccountWrapper>
@@ -66,16 +73,40 @@ function MyAccount() {
 					))}
 				</S.ItensWrapper>
 
+				<S.DivCashBack>
+					<Typography gutterBottom>
+						Valor total dos atendimentos: {servicesTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+					</Typography>
+				</S.DivCashBack>
 
 				<Typography align='center' variant='h5' gutterBottom color="primary">
 					Histórico de compras
-        </Typography>
+        		</Typography>
 
 				<S.ItensWrapper>
 					{products.map(item => (
 							<CardPurchaseHistoric key={item.id} item={item}/>
 					))}
 				</S.ItensWrapper>
+
+				<S.DivCashBack>
+					<Typography gutterBottom>
+						Valor total dos produtos: {productsTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+					</Typography>
+				</S.DivCashBack>
+
+				<S.DivTotal>
+					<Card style={ { backgroundColor: '#D12B63'}}>
+						<CardContent>
+							<Typography gutterBottom>
+								<strong>Valor total</strong> (produtos + serviços): {total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+							</Typography>
+							<Typography gutterBottom>
+								<strong>CashBack disponível</strong> (10% para usar em produtos do salão): <S.ValueCashBack>{(total * 0.1).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</S.ValueCashBack>
+							</Typography>
+						</CardContent>
+					</Card>
+				</S.DivTotal>
 
 			</S.MyAccountWrapper>
 

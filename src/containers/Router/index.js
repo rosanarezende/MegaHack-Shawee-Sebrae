@@ -9,6 +9,7 @@ import InitialScreen from '../InitialScreen';
 import Login from '../Login';
 import MyAccount from '../MyAccount';
 import SignUp from '../SignUp';
+import Cart from '../Cart';
 
 export const routes = {
   root: '/', 
@@ -35,6 +36,7 @@ function Router(props) {
         <Route exact path={routes.agendamento} component={Calendar} />
         <Route exact path={routes.produtos} component={Produtos} />
         <Route exact path={routes.minhaConta} component={MyAccount}/>
+        <Route exact path={routes.carrinho} component={Cart}/>
         <Route path="*" component={() => "Página não encontrada"} />
       </Switch>
     </ConnectedRouter>
