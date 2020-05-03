@@ -62,7 +62,7 @@ class Produtos extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  products: state.professional.products,
+  products: state.shopping.products,
 })
 
 

@@ -3,10 +3,23 @@ import styled from 'styled-components'
 export const PageWrapper = styled.div`
   min-height: 100vh;
   width:100%;
-  background-color: #fff5ff;
+  background-image: linear-gradient(#ffddff, #fff);
   box-sizing:border-box;
-  padding-bottom: 60px;
+  padding: 0px 0px 60px 0px;
   
+`
+export const ImgSide = styled.img`
+  width:100%;
+  height:250px;
+  object-fit: cover;
+`
+export const BodyWrapper = styled.main`
+  height:auto;
+  width:100%;
+  padding: 0 15px;
+  & > div{
+    margin: 20px 0;
+  }
 `
 export const Header = styled.header`
   height:100px;

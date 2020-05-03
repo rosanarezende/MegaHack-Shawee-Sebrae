@@ -19,15 +19,3 @@ export const setLacations = (locations) => ({
     }
 })
 
-export const setProduct = (product) => ({
-    type: "SET_PRODUCT",
-    payload: {
-      product
-    }
-})
-export const setProductToDetail = (productDetail) => ({
-    type: "SET_PRODUCT_TO_DETAIL",
-    payload: {
-      productDetail
-    }
-})

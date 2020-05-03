@@ -4,15 +4,15 @@ import { connect } from 'react-redux'
 import { routes } from '../../containers/Router';
 
 import { Wrapper, ImgSide, InfoSide, Title, Price } from './style'
-import {setProductToDetail} from '../../actions/professional'
+import { setProductToDetail } from '../../actions/shopping'
 
 class ProductItem extends React.Component {
 
-  handleClick =() =>{
+  handleClick = () => {
     this.props.setProductToDetail(this.props.product)
     this.props.goToProductDetail()
   }
-  
+
   render() {
     const { product } = this.props
     return (
@@ -34,4 +34,4 @@ const mapDispatchToProps = (dispatch) => ({
   goToProductDetail: () => dispatch(push(routes.detalheDeProduto))
 })
 
-export default connect (null, mapDispatchToProps)(ProductItem)
+export default connect(null, mapDispatchToProps)(ProductItem)
