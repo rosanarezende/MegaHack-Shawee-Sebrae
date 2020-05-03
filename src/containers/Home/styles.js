@@ -10,7 +10,8 @@ export const DivImg = styled.div`
 `
 
 export const Logo = styled.img`
-    width: 25vw;
+    width: 50vw;
+    max-width: 200px;
     border-radius: 50%;
-    margin: 1rem;
+    margin: 1rem 0 2rem;
 `

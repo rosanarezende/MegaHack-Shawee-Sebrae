@@ -23,6 +23,10 @@ function Home(props) {
           />
         </S.DivImg>
 
+        <Typography align='center' gutterBottom>
+          {professionalData.businessAbout}
+        </Typography>
+
 
 
       </S.HomeWrapper>
