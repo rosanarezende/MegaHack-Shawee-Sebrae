@@ -1,7 +1,7 @@
 const initialState = {
     professionalData: {
         businessImage: 'https://user-images.githubusercontent.com/45580434/80896819-ddc14480-8cc8-11ea-8991-afc026c3007e.png',
-        businessName: 'Salão da Joana',
+        businessName: 'Joana Beauty',
         businessAbout: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit, eligendi voluptatibus! Ducimus porro quod beatae asperiores blanditiis officia, assumenda tempora non fugiat similique sed ipsam, eligendi nisi repudiandae in recusandae?',
         image: 'https://user-images.githubusercontent.com/45580434/80915267-869e8c80-8d27-11ea-9fd5-11bd16d60cfd.jpg',
         name: 'Joana Silva',
