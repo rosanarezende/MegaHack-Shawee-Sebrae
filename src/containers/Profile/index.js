@@ -1,12 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import MyBottonNav from '../../components/BottonNav'
+import { PageWrapper } from './style'
 
 class Profile extends React.Component {
 
   render() {
-    return(
-      <MyBottonNav />
+    return (
+      <PageWrapper>
+
+        <MyBottonNav />
+      </PageWrapper>
     )
   }
 }
