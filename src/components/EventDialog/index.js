@@ -22,26 +22,17 @@ class EventDialog extends React.Component {
 
 	handleSchedule = (event) => {
 		event.preventDefault()
-		const { addEvent, setOpenDialog, eventDate } = this.props
+		const { addEvent, setOpenDialog, eventDate, user } = this.props
 		const { serviceSelected, timeSelected, localSelected, observeSelected } = this.state
 		const start = `${eventDate.dateStr}T${timeSelected}:00-03:00`
 		const startTimeStamp = Date.parse(start)
-		// const milisecondsService = serviceSelected.durationTime * 60000
-		// const endTimeStamp = startTimeStamp + milisecondsService
-
 		const eventFormated = {
 			serviceId: serviceSelected,
 			startTime: startTimeStamp,
 			localId: localSelected,
 			observation: observeSelected,
-
-			// id: new Date().getTime(),
-			// title: serviceSelected,
-			// duration: serviceSelected.durationTime,
-			// endTime: endTimeStamp,
+			costumerId: user.id
 		}
-		// console.log(eventFormated)
-
 		if(window.confirm('Os dados do agendamento estão corretos?')){
 			addEvent(eventFormated)
 			this.setState({

@@ -19,6 +19,7 @@ function Calendar(props) {
         eventDate,
         services,
         locations,
+        user,
 
         setOpenDialog,
         setDate,
@@ -45,6 +46,7 @@ function Calendar(props) {
                         eventDate={eventDate}
                         services={services}
                         locations={locations}
+                        user={user}
 
                         setOpenDialog={setOpenDialog}
                         setDate={setDate}
@@ -64,7 +66,8 @@ const mapStateToProps = (state) => ({
     dialogOpen: state.calendar.dialogOpen,
     eventDate: state.calendar.eventDate,
     services: state.professional.services,
-    locations: state.professional.locations
+    locations: state.professional.locations,
+    user: state.user.user
 })
 
 const mapDispatchToProps = dispatch => ({

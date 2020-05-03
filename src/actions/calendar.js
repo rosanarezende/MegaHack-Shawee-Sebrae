@@ -32,9 +32,11 @@ export const setDate = (date) => ({
     }
 })
 
-export const addEvent = (event) => ({
-    type: "ADD_EVENT",
-    payload: {
-        event
-    }
-})
+
+export const addEvent = (event) => dispatch => {
+    axios
+        .post(`${baseURL}/events/scheduling`, event)
+        .then(response => {
+            dispatch(getEvents())
+        })
+}

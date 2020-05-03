@@ -40,12 +40,11 @@ const calendar = (state = initialState, action) => {
             }
 
         case 'ADD_EVENT':
-            const newEvents = state.events
-            newEvents.push(action.payload.event)
             return {
                 ...state,
-                events: newEvents
+                events: action.payload.event
             }
+            
 
         case 'SET_OPEN_DIALOG':
             return {
