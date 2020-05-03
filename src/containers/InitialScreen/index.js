@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import LogoImg from '../../img/logo-joana-beauty.png';
 import { connect } from 'react-redux';
@@ -21,17 +21,22 @@ const StyledImg = styled.img`
 `
 
 function InitialScreen(props) {
-    useEffect(
-        () => {
-            //         const token = window.localStorage.getItem('token')
-            //         if (token) {
-            //             props.getProfile()
-            //             props.goHome()
-            //         } else {
-            //             props.goToLogin()
-            //         }s
-        }, []
-    )
+    
+    useEffect(() => {
+            const token = window.localStorage.getItem('token')
+            if (token) {
+                const timer = setTimeout(() => {
+                    // props.getProfile()
+                     props.goHome()
+                  }, 1000);
+                  return () => clearTimeout(timer);
+            } else {
+                const timer = setTimeout(() => {
+                    props.goToLogin()
+                  }, 1000);
+                  return () => clearTimeout(timer);
+            }
+        }, [props])
 
     return (
         <MainContainer>
