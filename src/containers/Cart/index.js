@@ -45,15 +45,11 @@ function Cart(props) {
         //     products: infoQuantity,
         //     paymentMethod: payment
         // }
-        // if (order && Object.keys(order).length !== 0) {
-        //     alert('Não é possível realizar dois pedidos ao mesmo tempo. Aguarde seu seu pedido ativo ser concluído!')
-        //     goToFeed()
-        // }
-        // else if (infoQuantity.length === 0) {
+        //  if (products.length === 0) {
         //     alert('Adicione produtos ao carrinho para realizar um pedido!')
         // }
         // else {
-        //     placeOrder(placeOrderData, restaurantId)
+        //     placeOrder(placeOrderData)
         // }
     }
 
