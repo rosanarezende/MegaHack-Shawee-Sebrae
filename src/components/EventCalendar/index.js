@@ -29,9 +29,7 @@ class EventCalendar extends React.Component {
 			if(start.getDate() < 10){ day = `0${start.getDate()}`} 
 			else { day = start.getDate()}
 			const startHour = start.toString().substr(16, 8)
-			const startFormated = `${start.getFullYear()}-${month}-${day}T${startHour}-03:00`
-
-			
+			const startFormated = `${start.getFullYear()}-${month}-${day}T${startHour}-03:00`		
 
 			const end = new Date(event.endTime)
 			let monthEnd
@@ -46,7 +44,7 @@ class EventCalendar extends React.Component {
 			return {
 				id: event.id,
 				title: event.title,
-				description: event.description,
+				// description: event.description, // precisa?
 				start: startFormated,
 				end: endFormated,
 				// 		extendedProps: event,

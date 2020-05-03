@@ -1,44 +1,41 @@
-import React, { Component, useEffect } from 'react';
-import styled from 'styled-components';
-import LogoImg from '../../img/logo-joana-beauty.png';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 import { routes } from '../Router/index';
 // import { getProfile } from '../../actions/users';
 
-const MainContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background-color: #EFD6EF;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-
-const StyledImg = styled.img`
-  height: 281px;
-  width: 281px;
-`
+import { MainContainer, StyledImg } from './styles'
 
 function InitialScreen(props) {
-    useEffect(
-        () => {
-            //         const token = window.localStorage.getItem('token')
-            //         if (token) {
-            //             props.getProfile()
-            //             props.goHome()
-            //         } else {
-            //             props.goToLogin()
-            //         }s
-        }, []
-    )
+    
+    useEffect(() => {
+            const token = window.localStorage.getItem('token')
+            if (token) {
+                const timer = setTimeout(() => {
+                    // props.getProfile()
+                     props.goHome()
+                  }, 1000);
+                  return () => clearTimeout(timer);
+            } else {
+                const timer = setTimeout(() => {
+                    props.goToLogin()
+                  }, 1000);
+                  return () => clearTimeout(timer);
+            }
+        }, [props])
+
+    const { professionalData } = props
 
     return (
         <MainContainer>
-            <StyledImg src={LogoImg} alt="Logo Joana Beauty" />
+            <StyledImg src={professionalData.businessImage} alt={professionalData.businessName} />
         </MainContainer>
     );
 }
+
+const mapStateToProps = state => ({
+    professionalData: state.professional.professionalData
+})
 
 const mapDispatchToProps = dispatch => ({
     goToLogin: () => dispatch(push(routes.login)),
@@ -46,4 +43,4 @@ const mapDispatchToProps = dispatch => ({
     goHome: () => dispatch(push(routes.home))
 })
 
-export default connect(null, mapDispatchToProps)(InitialScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(InitialScreen)

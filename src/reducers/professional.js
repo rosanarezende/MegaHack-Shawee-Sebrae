@@ -1,4 +1,11 @@
 const initialState = {
+    professionalData: {
+        businessImage: 'https://user-images.githubusercontent.com/45580434/80896819-ddc14480-8cc8-11ea-8991-afc026c3007e.png',
+        businessName: 'Salão da Joana',
+        image: 'https://user-images.githubusercontent.com/45580434/80896920-dfd7d300-8cc9-11ea-8562-cb8c5aa73060.jpg',
+        name: 'Joana Silva',
+    },
+
     services: [
         {
             id: 1,
@@ -60,6 +67,12 @@ const initialState = {
 const professional = (state = initialState, action) => {
 
     switch (action.type) {
+
+        case 'SET_PROFESSIONAL_DATA': 
+            return {
+                ...state,
+                professionalData: action.payload.data
+            }
         
         case 'SET_SERVICES': 
             return {
