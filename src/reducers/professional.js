@@ -2,8 +2,10 @@ const initialState = {
     professionalData: {
         businessImage: 'https://user-images.githubusercontent.com/45580434/80896819-ddc14480-8cc8-11ea-8991-afc026c3007e.png',
         businessName: 'Salão da Joana',
+        businessAbout: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit, eligendi voluptatibus! Ducimus porro quod beatae asperiores blanditiis officia, assumenda tempora non fugiat similique sed ipsam, eligendi nisi repudiandae in recusandae?',
         image: 'https://user-images.githubusercontent.com/45580434/80896920-dfd7d300-8cc9-11ea-8562-cb8c5aa73060.jpg',
         name: 'Joana Silva',
+        about: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente, possimus. Vero voluptatum cumque temporibus hic nesciunt commodi error saepe suscipit optio ullam recusandae nemo illo, architecto cupiditate voluptatem delectus ad.'
     },
 
     services: [
