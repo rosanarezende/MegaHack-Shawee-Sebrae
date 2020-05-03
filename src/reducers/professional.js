@@ -1,7 +1,7 @@
 const initialState = {
     professionalData: {
         businessImage: 'https://user-images.githubusercontent.com/45580434/80896819-ddc14480-8cc8-11ea-8991-afc026c3007e.png',
-        businessName: 'Salão da Joana',
+        businessName: 'Joana Beauty',
         businessAbout: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit, eligendi voluptatibus! Ducimus porro quod beatae asperiores blanditiis officia, assumenda tempora non fugiat similique sed ipsam, eligendi nisi repudiandae in recusandae?',
         image: 'https://user-images.githubusercontent.com/45580434/80915267-869e8c80-8d27-11ea-9fd5-11bd16d60cfd.jpg',
         name: 'Joana Silva',
@@ -35,21 +35,21 @@ const initialState = {
     products: [
       {
           id: 1,
-          name: 'Creme',
+          name: 'Shampoo Herbal',
           value: 30,
-          img: 'https://static1.belezaextraordinaria.com.br/articles/6/24/02/6/@/241661-o-corte-curto-com-maquina-e-uma-boa-opca-article_news-3.jpg'
+          img: 'https://user-images.githubusercontent.com/45580434/80917398-00894280-8d35-11ea-9892-beedc8447fc2.jpg'
       },
       {
           id: 2,
           name: 'Esmalte',
-          value: 50,
-          img: 'https://static1.belezaextraordinaria.com.br/articles/1/23/87/1/@/241011-veja-os-nomes-dos-cortes-mais-famosos-e-article_news-4.jpg'
+          value: 22.5,
+          img: 'https://user-images.githubusercontent.com/45580434/80917325-6e813a00-8d34-11ea-9879-9bc0390698e1.jpg'
       },
       {
           id: 3,
           name: 'Maquiagem',
           value: 60,
-          img: 'https://correio-cdn1.cworks.cloud/fileadmin/_processed_/f/c/csm_shutterstock_249360427_d9678da4c4.jpg'
+          img: 'https://user-images.githubusercontent.com/45580434/80917442-4940fb80-8d35-11ea-9038-d2d926fd456a.jpg'
       },
   ],
     locations: [
