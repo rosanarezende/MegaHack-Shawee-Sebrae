@@ -37,7 +37,7 @@ export const Price = styled.div`
   height:50%;
   font-size: 1.5rem;
   font-weight:700;
-  color: rgb(231,102,198);
+  color: #D12B63;
   border-bottom-right-radius:5px;
   display:flex;
   align-items:center;

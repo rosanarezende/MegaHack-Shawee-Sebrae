@@ -12,7 +12,7 @@ import { Wrapper } from './styles'
 
 
 
-function HomeLogo(props) {
+function CalendarLogo(props) {
   return (
     <SvgIcon width="33px" height="33px" viewBox="0 0 33 33" {...props}>
       <path d="M28.5,0h-24C2.019,0,0,2.019,0,4.5v24C0,30.98,2.019,33,4.5,33h24c2.48,0,4.5-2.02,4.5-4.5v-24C33,2.019,30.98,0,28.5,0z
@@ -69,21 +69,21 @@ class MyBottonNav extends React.Component {
       value: newValue
     })
     switch (newValue) {
-      case 'home':
-        this.props.goToHomePage()
-        this.props.setPlace('home')
+      case 'calendar':
+        this.props.goToCalendarPage()
+        this.props.setPlace('calendar')
         break;
       case 'cart':
-        //  this.props.goToCartPage()
+        this.props.goToCartPage()
         this.props.setPlace('cart')
         break;
       case 'profile':
-        //this.props.goToProfilePage()
+        this.props.goToProfilePage()
         this.props.setPlace('profile')
         break;
       default:
         // this.props.goToHomePage()
-        this.props.setPlace('home')
+        this.props.setPlace('calendar')
         break;
     }
   }
@@ -94,7 +94,7 @@ class MyBottonNav extends React.Component {
     return (
       <Wrapper>
         <BottomNavigation value={this.state.value} onChange={this.onNavChange}>
-          <BottomNavigationAction value="home" icon={<HomeLogo style={{ fontSize: 35 }} />} />
+          <BottomNavigationAction value="calendar" icon={<CalendarLogo style={{ fontSize: 35 }} />} />
           <BottomNavigationAction value="cart" icon={<CartLogo style={{ fontSize: 35 }} />} />
           <BottomNavigationAction value="profile" icon={<ProfileLogo style={{ fontSize: 35 }} />} />
         </BottomNavigation>
@@ -108,8 +108,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  goToHomePage: () => dispatch(push(routes.home)),
-  goToCartPage: () => dispatch(push(routes.carrinho)),
+  goToCalendarPage: () => dispatch(push(routes.agendamento)),
+  goToCartPage: () => dispatch(push(routes.produtos)),
   goToProfilePage: () => dispatch(push(routes.minhaConta)),
   setPlace: (actualPlace) => dispatch(setActualPage(actualPlace))
 })

@@ -10,7 +10,7 @@ export const PageWrapper = styled.div`
 export const Header = styled.header`
   height:100px;
   width: 100%;
-  background-color: #f598f2;
+  background-color: #D12B63;
   display:flex;
   justify-content:center;
   align-items:center;
