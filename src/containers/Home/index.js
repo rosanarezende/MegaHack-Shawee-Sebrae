@@ -27,8 +27,8 @@ function Home(props) {
           {professionalData.businessAbout}
         </Typography>
 
-
-
+      Testando note
+      
       </S.HomeWrapper>
 
       <MyBottonNav />
