@@ -41,7 +41,7 @@ function Calendar(props) {
       <MyPageTitle pageTitle='Agendamento' />
       <S.CalendarWrapper>
 
-        <Typography align='center' variant='h3' gutterBottom color="primary">
+        <Typography align='center' variant='h5' gutterBottom color="primary">
           Agende seu atendimento
         </Typography>
 
