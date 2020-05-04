@@ -16,10 +16,6 @@ import EventDialog from '../EventDialog'
 class EventCalendar extends React.Component {
 	calendarComponentRef = React.createRef()
 	
-	state = {
-		calendarWeekends: true,
-	}
-
 	handleDateClick = (event) => {
 		const { setOpenDialog, setDate } = this.props
 		setDate(event)
@@ -78,7 +74,11 @@ class EventCalendar extends React.Component {
 					]}
 					locale={ptbrLocale}
 					ref={this.calendarComponentRef}
-					weekends={this.state.calendarWeekends}
+					weekends={true} // pode bloquear o fim de semana
+					// validRange={{
+					// 	start: new Date() // não consegue marcar pra dias atrás
+					//  }}
+					height={420}
 					events={eventsHere}
 					dateClick={this.handleDateClick}
 				/>

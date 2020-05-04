@@ -161,7 +161,7 @@ class EventDialog extends React.Component {
 						>
 							<option value="" hidden></option>
 							{locations.map(local => (
-								<option value={local.id}>
+								<option value={local.id} key={local.id}>
 									{local.name} {local.value !== 0 && ` (acréscimo de ${local.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })})`}
 								</option>
 							))}
@@ -206,7 +206,7 @@ class EventDialog extends React.Component {
 						>
 							<option value="" hidden></option>
 							{services.map(service => (
-								<option value={service.id}>
+								<option value={service.id} key={service.id}>
 									{service.name} - {service.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
 								</option>
 							))}

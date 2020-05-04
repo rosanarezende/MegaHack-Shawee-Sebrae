@@ -54,7 +54,7 @@ function MyAccount(props) {
         		</Typography>
 
 				{shoopingEvents.map(event => (
-					<div>
+					<div key={event.id}>
 						<Typography variant="h6">						
 							Data da compra: {new Date(event.date).toLocaleDateString()}
 						</Typography>

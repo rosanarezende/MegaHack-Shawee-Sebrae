@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
-
 import EventCalendar from '../../components/EventCalendar'
 import MyBottonNav from '../../components/BottonNav'
+import MyPageTitle from '../../components/PageTitle'
 
 import { setOpenDialog, setDate, addEvent } from '../../actions/calendar'
 import { getEvents } from '../../actions/calendar'
@@ -38,11 +38,12 @@ function Calendar(props) {
 
   return (
     <>
+      <MyPageTitle pageTitle='Agendamento' />
       <S.CalendarWrapper>
 
-        <Typography align='center' variant='h3' gutterBottom color="primary">
+        <Typography align='center' variant='h5' gutterBottom color="primary">
           Agende seu atendimento
-                </Typography>
+        </Typography>
 
         <S.EventCalendarWrapper>
           <EventCalendar
