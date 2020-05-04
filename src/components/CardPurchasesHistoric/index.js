@@ -4,8 +4,8 @@ import * as S from './styles'
 import { CardContent, Typography } from '@material-ui/core'
 
 function CardPurchaseHistoric(props) {
-    const { item } = props
-    const date = new Date(item.date)
+    const { item, startTime } = props
+    const date = new Date(Number(startTime))
     let month
     if (date.getMonth() + 1 < 10) { month = `0${date.getMonth() + 1}` }
     else { month = date.getMonth() + 1 }
@@ -14,7 +14,7 @@ function CardPurchaseHistoric(props) {
     else { day = date.getDate() }
     const hour = date.toString().substr(16, 5)
     const dateFormated = `${day}/${month}/${date.getFullYear()} - ${hour}h`
-    
+
     return (
         <S.CardProduct>
             <S.CardImageProduct
@@ -30,9 +30,11 @@ function CardPurchaseHistoric(props) {
                     Valor: {item.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                 </Typography>
 
-                <Typography variant="body1">
-                    Data: {dateFormated}
-                </Typography>
+                {startTime &&
+                    <Typography variant="body1">
+                        Data: {dateFormated}
+                    </Typography>
+                }
 
             </CardContent>
 
