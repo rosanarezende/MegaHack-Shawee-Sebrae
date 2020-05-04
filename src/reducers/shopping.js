@@ -2,6 +2,7 @@ const initialState = {
   products: [],
   productToDetail: {},
   cartList: [],
+
   shoopingEvents: [
     {
       id: 1,
@@ -45,6 +46,16 @@ const shopping = (state = initialState, action) => {
         ...state,
         cartList: newCartList
       }
+
+    // não está integrado com backend
+    case 'ADD_ORDER':
+        let newShoopingEvents = state.shoopingEvents
+        newShoopingEvents.push(action.payload.order)
+        return {
+          ...state,
+          shoopingEvents: newShoopingEvents
+        }
+
     default:
       return state
   }

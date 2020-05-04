@@ -1,19 +1,21 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import { push } from 'connected-react-router'
+import { routes } from  '../Router'
 
 import * as S from './styles'
+import { Card, CardHeader, Avatar, Typography } from '@material-ui/core'
+
+import { addOrder } from '../../actions/shopping'
 
 import MyBottonNav from '../../components/BottonNav'
-import { Card, CardHeader, Avatar, Typography } from '@material-ui/core'
 import ProductInCart from '../../components/ProductInCart'
 import MyPageTitle from '../../components/PageTitle'
 
 function Cart(props) {
-  const { user, products } = props
+  const { user, products, addOrder, goHome, goProducts } = props
   const productsTotal = products.reduce((prevVal, product) => { return prevVal + product.value }, 0)
-
   const frete = 5
-
   const cashBack = 12.5
 
   const [payment, setpayment] = useState('')
@@ -24,17 +26,22 @@ function Cart(props) {
 
   function onPlaceOrder(e) {
     e.preventDefault()
-    // const placeOrderData = {
-    //     products: infoQuantity,
-    //     paymentMethod: payment
-    // }
-    //  if (products.length === 0) {
-    //     alert('Adicione produtos ao carrinho para realizar um pedido!')
-    // }
-    // else {
-    //     placeOrder(placeOrderData)
-    // }
+    const placeOrderData = {
+        products: products,
+        paymentMethod: payment,
+        date: new Date().getTime()
+    }
+    if (products.length === 0) {
+      alert('Adicione produtos ao carrinho para realizar um pedido!')
+      goProducts()
+    }
+    else {
+      alert('Pedido realizado com sucesso!') // se tivesse integrado com back não seria assim
+      addOrder(placeOrderData)
+      goHome()
+    }
   }
+
 
   return (
     <>
@@ -143,8 +150,10 @@ const mapStateToProps = state => ({
   products: state.shopping.cartList
 })
 
-// const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
+  addOrder: (order) => dispatch(addOrder(order)),
+  goHome: () => dispatch(push(routes.home)),
+  goProducts: () => dispatch(push(routes.produtos))
+})
 
-// })
-
-export default connect(mapStateToProps)(Cart)
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)

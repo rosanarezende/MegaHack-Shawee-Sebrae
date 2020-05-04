@@ -11,8 +11,6 @@ export const getProductsList = () => dispatch => {
         })
 }
 
-
-
 export const setProductList = (productList) => ({
   type: "SET_PRODUCT_LIST",
   payload: {
@@ -30,5 +28,12 @@ export const addToCart = (product) => ({
   type: 'ADD_TO_CART',
   payload: {
     product
+  }
+})
+
+export const addOrder = (order) => ({
+  type: 'ADD_ORDER',
+  payload: {
+    order
   }
 })
