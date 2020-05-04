@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const CalendarWrapper = styled.div`
-    margin: 5rem 2rem;
+    margin: 2rem;
 `
 
 export const EventCalendarWrapper = styled.div`

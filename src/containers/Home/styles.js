@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Card } from '@material-ui/core'
 
 export const HomeWrapper = styled.div`
-    margin: 2rem 2rem 5rem;
+    margin: 1rem 2rem 5rem;
 `
 
 export const DivImg = styled.div`
