@@ -4,8 +4,8 @@ import TextField from '@material-ui/core/TextField';
 // import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
-// import { push } from 'connected-react-router';
-// import { routes } from '../Router/index';
+import { push } from 'connected-react-router';
+import { routes } from '../Router/index';
 import { goBack } from 'connected-react-router';
 import HeaderNav from '../../components/HeaderNav';
 import { signUp } from '../../actions/user';
@@ -35,11 +35,11 @@ function SignUp(props) {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [adress, setAdress] = useState("")
+    const [address, setAddress] = useState("")
 
     const handleSubmit = (ev) => {
         ev.preventDefault()
-        props.signUp({ name, email, password, adress })
+        props.signUp({ name, email, password, address })
     }
 
     const { professionalData } = props
@@ -98,12 +98,12 @@ function SignUp(props) {
                 />
 
                 <TextField
-                    name="adress"
-                    type="adress"
+                    name="address"
+                    type="address"
                     label="Endereço"
                     placeholder="Endereço completo"
-                    value={password}
-                    onChange={(event) => setAdress(event.target.value)}
+                    value={address}
+                    onChange={(event) => setAddress(event.target.value)}
                     margin="normal"
                     variant="outlined"
                     required
