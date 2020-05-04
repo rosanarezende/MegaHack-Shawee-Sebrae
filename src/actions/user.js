@@ -28,25 +28,25 @@ export const login = user => dispatch => {
 
 
 export const signUp = user => dispatch => {
-    // try {
-    //     const data = {
-    //         'name': user.name,
-    //         'email': user.email,
-    //         'password': user.password,
-    //         'photo': user.photo
-    //     }
+    try {
+        const data = {
+            'name': user.name,
+            'email': user.email,
+            'password': user.password,
+            'address': user.address
+        }
 
-    //     axios.post(
-    //         // `colocar a url aqui`,
-    //         data
-    //     ).then(
-    //         response => {
-    //             window.localStorage.setItem('token', response.data.token)
-    //             dispatch(storeUser(response.data.user))
-    //             dispatch(push(routes.home))
-    //         }
-    //     )
-    // } catch (err) {
-    //     console.log(err)
-    // }
+        axios.post(
+            `${baseURL}/signup`,
+            data
+        ).then(
+            response => {
+                window.localStorage.setItem('token', response.data.token)
+                dispatch(storeUser(response.data.user))
+                dispatch(push(routes.home))
+            }
+        )
+    } catch (err) {
+        console.log(err)
+    }
 }

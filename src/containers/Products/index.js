@@ -52,7 +52,6 @@ class Produtos extends React.Component {
 
   render() {
     const { products } = this.props
-    console.log(this.props.cartList)
     return (
       <PageWrapper>
         <MyPageTitle pageTitle='Produtos' />

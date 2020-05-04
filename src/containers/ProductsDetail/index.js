@@ -21,9 +21,7 @@ class ProductDetails extends React.Component {
 
   componentDidMount() {
     const { cartList, product } = this.props
-    console.log(cartList, product)
     if (cartList.length > 0) {
-      console.log('entrei')
       const produtoEncontrado = cartList.filter(cartProduct => {
         return cartProduct.id === product.id
       })
