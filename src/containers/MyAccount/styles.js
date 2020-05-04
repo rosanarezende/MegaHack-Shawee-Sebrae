@@ -5,7 +5,7 @@ export const MyAccountWrapper = styled.div`
 `
 
 export const ItensWrapper = styled.div`
-    margin: 2rem 1rem 1rem;
+    margin: 2rem 0rem 1rem;
 `
 
 export const DivCashBack = styled.div`

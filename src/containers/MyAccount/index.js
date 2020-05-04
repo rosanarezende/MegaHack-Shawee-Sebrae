@@ -5,6 +5,7 @@ import * as S from './styles'
 import { Typography, Card, CardContent } from '@material-ui/core'
 
 import MyBottonNav from '../../components/BottonNav'
+import MyPageTitle from '../../components/PageTitle'
 import CardPurchaseHistoric from '../../components/CardPurchasesHistoric'
 
 function MyAccount() {
@@ -61,8 +62,8 @@ function MyAccount() {
 
 	return (
 		<>
+      <MyPageTitle pageTitle='Minha Conta' />
 			<S.MyAccountWrapper>
-
 				<Typography align='center' variant='h5' gutterBottom color="primary">
 					Histórico de atendimentos
         </Typography>
