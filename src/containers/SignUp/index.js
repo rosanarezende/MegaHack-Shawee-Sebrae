@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
-// import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { connect } from 'react-redux';
-import { push } from 'connected-react-router';
-import { routes } from '../Router/index';
+
 import { goBack } from 'connected-react-router';
-import HeaderNav from '../../components/HeaderNav';
 import { signUp } from '../../actions/user';
+
+import HeaderNav from '../../components/HeaderNav';
 
 const Root = styled.div`
   width: 100%;
