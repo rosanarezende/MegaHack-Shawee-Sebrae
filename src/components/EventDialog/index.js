@@ -162,7 +162,7 @@ class EventDialog extends React.Component {
 							<option value="" hidden></option>
 							{locations.map(local => (
 								<option value={local.id}>
-									{local.name} {local.value != 0 && ` (acréscimo de ${local.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })})`}
+									{local.name} {local.value !== 0 && ` (acréscimo de ${local.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })})`}
 								</option>
 							))}
 						</TextField>

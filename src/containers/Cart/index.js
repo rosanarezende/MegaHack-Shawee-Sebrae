@@ -1,37 +1,21 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import { push } from 'connected-react-router'
+import { routes } from  '../Router'
 
 import * as S from './styles'
+import { Card, CardHeader, Avatar, Typography } from '@material-ui/core'
+
+import { addOrder } from '../../actions/shopping'
 
 import MyBottonNav from '../../components/BottonNav'
-import { Card, CardHeader, Avatar, Typography } from '@material-ui/core'
 import ProductInCart from '../../components/ProductInCart'
 import MyPageTitle from '../../components/PageTitle'
 
 function Cart(props) {
-  const { user, products } = props
-
-  /* const products = [
-      {
-          id: 1,
-          name: 'Sampoo Herbal',
-          value: 20.5,
-          img: 'https://user-images.githubusercontent.com/45580434/80917398-00894280-8d35-11ea-9892-beedc8447fc2.jpg',
-          date: 1588448549809,
-      },
-      {
-          id: 2,
-          name: 'Esmalte',
-          value: 12.95,
-          img: 'https://user-images.githubusercontent.com/45580434/80917325-6e813a00-8d34-11ea-9879-9bc0390698e1.jpg',
-          date: 1588448549809,
-      }
-  ] */
-
+  const { user, products, addOrder, goHome, goProducts } = props
   const productsTotal = products.reduce((prevVal, product) => { return prevVal + product.value }, 0)
-
   const frete = 5
-
   const cashBack = 12.5
 
   const [payment, setpayment] = useState('')
@@ -42,17 +26,22 @@ function Cart(props) {
 
   function onPlaceOrder(e) {
     e.preventDefault()
-    // const placeOrderData = {
-    //     products: infoQuantity,
-    //     paymentMethod: payment
-    // }
-    //  if (products.length === 0) {
-    //     alert('Adicione produtos ao carrinho para realizar um pedido!')
-    // }
-    // else {
-    //     placeOrder(placeOrderData)
-    // }
+    const placeOrderData = {
+        products: products,
+        paymentMethod: payment,
+        date: new Date().getTime()
+    }
+    if (products.length === 0) {
+      alert('Adicione produtos ao carrinho para realizar um pedido!')
+      goProducts()
+    }
+    else {
+      alert('Pedido realizado com sucesso!') // se tivesse integrado com back não seria assim
+      addOrder(placeOrderData)
+      goHome()
+    }
   }
+
 
   return (
     <>
@@ -61,10 +50,15 @@ function Cart(props) {
         <Card>
           <CardHeader
             avatar={
-              <Avatar
-                src={user.photo}
-                alt={user.name}
-              />
+              // <Avatar
+              //   src={user.photo}
+              //   alt={user.name}
+              // />
+              
+              // enquanto usuário não tem foto de perfil
+              <Avatar style={ { backgroundColor: '#D12B63'}}>
+                {user.name && user.name.slice(0, 1).toUpperCase()}
+              </Avatar>
             }
             title={user.name}
             subheader={user.address}
@@ -156,8 +150,10 @@ const mapStateToProps = state => ({
   products: state.shopping.cartList
 })
 
-// const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
+  addOrder: (order) => dispatch(addOrder(order)),
+  goHome: () => dispatch(push(routes.home)),
+  goProducts: () => dispatch(push(routes.produtos))
+})
 
-// })
-
-export default connect(mapStateToProps)(Cart)
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)

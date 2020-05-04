@@ -1,5 +1,7 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { connect } from 'react-redux'
+
+import { getEvents } from '../../actions/calendar'
 
 import * as S from './styles'
 import { Typography, Card, CardContent } from '@material-ui/core'
@@ -8,56 +10,23 @@ import MyBottonNav from '../../components/BottonNav'
 import MyPageTitle from '../../components/PageTitle'
 import CardPurchaseHistoric from '../../components/CardPurchasesHistoric'
 
-function MyAccount() {
+function MyAccount(props) {
+	const { shoopingEvents, getEvents, events, user } = props
 
-	// dados mocados... depois precisamos trabalhar isso, vindo do events... filtrar a pessoa
+	useEffect(() => {
+		getEvents()
+	  }, [getEvents])
 
-	const products = [
-		{
-			id: 1,
-			name: 'Sampoo Herbal',
-			value: 20.5,
-			img: 'https://user-images.githubusercontent.com/45580434/80917398-00894280-8d35-11ea-9892-beedc8447fc2.jpg',
-			date: 1588448549809,
-		},
-		{
-			id: 2,
-			name: 'Esmalte',
-			value: 12.95,
-			img: 'https://user-images.githubusercontent.com/45580434/80917325-6e813a00-8d34-11ea-9879-9bc0390698e1.jpg',
-			date: 1588448549809,
-		}
-	]
+	let productsTotal = 0
+	for(let event of shoopingEvents){
+		let number = event.products.reduce((prevVal, product) => { return prevVal + product.value }, 0)
+		productsTotal += number
+	}
 
-	const productsTotal = products.reduce((prevVal, product) => { return prevVal + product.value }, 0)
-
-
-	const services = [
-		{
-			id: 1,
-			name: 'Corte de cabelo masculino',
-			value: 30,
-			img: 'https://static1.belezaextraordinaria.com.br/articles/6/24/02/6/@/241661-o-corte-curto-com-maquina-e-uma-boa-opca-article_news-3.jpg',
-			date: 1588448549809,
-		},
-		{
-			id: 2,
-			name: 'Corte de cabelo feminino',
-			value: 50,
-			img: 'https://static1.belezaextraordinaria.com.br/articles/1/23/87/1/@/241011-veja-os-nomes-dos-cortes-mais-famosos-e-article_news-4.jpg',
-			date: 1588448549809,
-		},
-		{
-			id: 3,
-			name: 'Descoloração',
-			value: 60,
-			img: 'https://correio-cdn1.cworks.cloud/fileadmin/_processed_/f/c/csm_shutterstock_249360427_d9678da4c4.jpg',
-			date: 1588448549809,
-		}
-	]
-
-	const servicesTotal = services.reduce((prevVal, service) => { return prevVal + service.value }, 0)
-
+	const filteredEvents = events.filter(event => event.costumerId === user.id)
+		
+	const servicesTotal = filteredEvents.reduce((prevVal, service) => { return prevVal + service.service.value }, 0)
+	
 	const total = servicesTotal + productsTotal
 
 	return (
@@ -69,8 +38,8 @@ function MyAccount() {
         </Typography>
 				
 				<S.ItensWrapper>
-					{services.map(item => (
-						<CardPurchaseHistoric key={item.id} item={item}/>
+					{filteredEvents.map(item => (
+						<CardPurchaseHistoric key={item.id} item={item.service} startTime={item.startTime}/>
 					))}
 				</S.ItensWrapper>
 
@@ -84,11 +53,19 @@ function MyAccount() {
 					Histórico de compras
         		</Typography>
 
-				<S.ItensWrapper>
-					{products.map(item => (
-							<CardPurchaseHistoric key={item.id} item={item}/>
-					))}
-				</S.ItensWrapper>
+				{shoopingEvents.map(event => (
+					<div>
+						<Typography variant="h6">						
+							Data da compra: {new Date(event.date).toLocaleDateString()}
+						</Typography>
+
+						<S.ItensWrapper>
+							{event.products.map(item => (
+								<CardPurchaseHistoric key={item.id} item={item}/>
+							))}
+						</S.ItensWrapper>
+					</div>
+				))}
 
 				<S.DivCashBack>
 					<Typography gutterBottom>
@@ -117,11 +94,13 @@ function MyAccount() {
 }
 
 const mapStateToProps = state => ({
-
+	shoopingEvents: state.shopping.shoopingEvents,
+	events: state.calendar.events,
+	user: state.user.user
 })
 
 const mapDispatchToProps = dispatch => ({
-
+	getEvents: () => dispatch(getEvents()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyAccount)
