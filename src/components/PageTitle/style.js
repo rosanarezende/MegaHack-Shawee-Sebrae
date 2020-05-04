@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   display:flex;
   box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid grey;
+  box-sizing: border-box;
 `
 export const IconWrapper = styled.span`
   width:23px;
