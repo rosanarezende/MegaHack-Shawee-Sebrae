@@ -75,9 +75,9 @@ class EventCalendar extends React.Component {
 					locale={ptbrLocale}
 					ref={this.calendarComponentRef}
 					weekends={true} // pode bloquear o fim de semana
-					// validRange={{
-					// 	start: new Date() // não consegue marcar pra dias atrás
-					//  }}
+					validRange={{
+						start: new Date() // não consegue marcar pra dias atrás
+					 }}
 					height={420}
 					events={eventsHere}
 					dateClick={this.handleDateClick}

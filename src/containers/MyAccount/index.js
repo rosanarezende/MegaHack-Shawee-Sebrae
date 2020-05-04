@@ -31,7 +31,7 @@ function MyAccount(props) {
 
 	return (
 		<>
-      <MyPageTitle pageTitle='Minha Conta' />
+      <MyPageTitle pageTitle='Minha Conta' showLogout/>
 			<S.MyAccountWrapper>
 				<Typography align='center' variant='h5' gutterBottom color="primary">
 					Histórico de atendimentos
